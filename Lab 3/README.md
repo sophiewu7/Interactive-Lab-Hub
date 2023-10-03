@@ -185,6 +185,7 @@ Kevin: Yes TT, can you let me know where is my glasses?
 Robot Butler: Let me check. Your glass are on the sink of the bathroom.
 Kevin: Thank you, TT. 
 
+Click to watch the video:
 [![Act Out](https://hackmd.io/_uploads/rk0TPmke6.jpg)](https://www.youtube.com/watch?v=MXm7EFBcMv8)
 
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
@@ -246,7 +247,11 @@ The system should:
 
 *Include videos or screencaptures of both the system and the controller.*
 
-![](https://hackmd.io/_uploads/H1tFAlFga.png)
+*Click to watch the video: Introduction of the device*
+[![Act Out](https://hackmd.io/_uploads/H1tFAlFga.png)](https://www.youtube.com/watch?v=yqGF0PsgBKE)
+
+*Click to watch the video: Acting out*
+[![Act Out](https://hackmd.io/_uploads/rk0Ozbtlp.png)](https://youtu.be/3kqRtDJEGQg)
 
 
 ## Test the system
