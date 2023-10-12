@@ -182,13 +182,41 @@ Usually, sensors need to be positioned in specific locations or orientations to 
 
 **\*\*\*Draw 5 sketches of different ways you might use your sensor, and how the larger device needs to be shaped in order to make the sensor useful.\*\*\***
 
+We picked the distance sensor as our primary sensor for the following ideas:
+
+1. Handheld Device for Visually Impaired Individuals (detect the distance of obstacles)![](https://hackmd.io/_uploads/BJ7vE-fZa.jpg)
+
+2. Modern Doorbell System (detect people approachness when within certian distance of the door)
+
+![](https://hackmd.io/_uploads/SkcqOjm-p.png)
+
+3. Dance Motion Capturer / Detector
+Distance and gesture sensors are used to help detect and capture motions for a dancing game that can be played on the TV.
+![](https://hackmd.io/_uploads/SkM43uAxT.png)
+
+
+4. Food delivery defender (detect the absense of food)
+
+![](https://hackmd.io/_uploads/rk-MTomWa.png)
+
+
+5. Home Light Assitant
+During the night or when the outdoor light is dimmed, turn on the light of the room when users are within the detectable area.
+![](https://hackmd.io/_uploads/H19kgKCep.png)
+
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+
 
 **\*\*\*Pick one of these designs to prototype.\*\*\***
 
 
+
 ### Part D
 ### Physical considerations for displaying information and housing parts
+
+
+![](https://hackmd.io/_uploads/rkzSx3XWa.png)
+
 
 
 Here is a Pi with a paper faceplate on it to turn it into a display interface:
@@ -226,6 +254,24 @@ Think about how you want to present the information about what your sensor is se
  
 **\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
 
+1. Home center control panel
+2. Intergrated Task completion reminder
+3. Car racing game
+4. Flappy bird game
+5. 3D-Map generator
+![](https://hackmd.io/_uploads/SyP8Gc4-p.jpg)
+ Home center control panel
+ Position the knobs on the right side of the screen that displays the light information. Use the knobs to change the light level and color temperature. Push the knobs to turn on and off the light.
+ ![](https://hackmd.io/_uploads/HyKwz9EZ6.jpg)
+ Intergrated Task completion reminder
+ Position the knobs on the right side of the screen that displays the task list. Use the knobs to scroll through the list and push the knobs to check an existing task.
+ 
+
+3D Map Generator
+ ![](https://hackmd.io/_uploads/SJywp5EbT.jpg)
+ 
+The 3D Map Generator adeptly identifies surrounding objects and terrains. Users can either hold the generator or position it on a flat surface, prompting the device to scan the entirety of the view and subsequently display a 3D map on the screen. The device is equipped with two buttons and a joystick controller to facilitate interaction. The joystick enables users to rotate the map a full 360 degrees, providing a comprehensive view of the area. Meanwhile, the buttons permit users to either generate a new map or browse through existing maps with ease.
+ 
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
 
 **\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
