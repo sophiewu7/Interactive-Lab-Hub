@@ -1,7 +1,7 @@
 # Ph-UI!!!
 
 **NAMES OF COLLABORATORS HERE**
-
+John Li (jl4239), Shiying Wu (sw2298), Mingze Gao (mg2454), Crystal Chong (cc2795), Qianxin(Carl) Gan (qg72), Mingzhe Sun (ms3636)
 
 For lab this week, we focus both on sensing, to bring in new modes of input into your devices, as well as prototyping the physical look and feel of the device. You will think about the physical form the device needs to perform the sensing as well as present the display or feedback about what was sensed. 
 
@@ -206,6 +206,21 @@ During the night or when the outdoor light is dimmed, turn on the light of the r
 
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
 
+- What is the maximum and minimum range of the distance sensor to be effective for the user?
+- How is feedback provided to the user (auditory, haptic)?
+- Is the device ergonomic and easy to hold for extended periods?
+- What is the optimal range to detect a person approaching without causing false alarms?
+- How should the system notify the homeowner: sound, light, or a combination?
+- How does the system handle varying sizes of individuals (e.g., children)?
+
+Prototyping Needs:
+
+- Set up a prototype on a table or countertop to simulate real-world scenarios.
+- Test with various objects and food items to gauge accuracy.
+- Test the system in different lighting conditions, including complete darkness and dim light.
+- Evaluate the sensor's response time when someone enters or exits the detection zone.
+- Evaluate sensor accuracy in real-time motion tracking and feedback.
+
 
 **\*\*\*Pick one of these designs to prototype.\*\*\***
 
@@ -217,6 +232,7 @@ During the night or when the outdoor light is dimmed, turn on the light of the r
 
 ![](https://hackmd.io/_uploads/rkzSx3XWa.png)
 
+This a handheld device for visually impaired person, where he the button start the scan the surrunding enviroment, and the speaker in the center describe the surrounding to the user.
 
 
 Here is a Pi with a paper faceplate on it to turn it into a display interface:
@@ -259,29 +275,46 @@ Think about how you want to present the information about what your sensor is se
 3. Car racing game
 4. Flappy bird game
 5. 3D-Map generator
-![](https://hackmd.io/_uploads/SyP8Gc4-p.jpg)
- Home center control panel
- Position the knobs on the right side of the screen that displays the light information. Use the knobs to change the light level and color temperature. Push the knobs to turn on and off the light.
- ![](https://hackmd.io/_uploads/HyKwz9EZ6.jpg)
- Intergrated Task completion reminder
- Position the knobs on the right side of the screen that displays the task list. Use the knobs to scroll through the list and push the knobs to check an existing task.
- 
 
+![](https://hackmd.io/_uploads/SyP8Gc4-p.jpg)
+Home center control panel
+Position the knobs on the right side of the screen that displays the light information. Use the knobs to change the light level and color temperature. Push the knobs to turn on and off the light.
+
+![](https://hackmd.io/_uploads/HyKwz9EZ6.jpg)
+Intergrated Task completion reminder
+Position the knobs on the right side of the screen that displays the task list. Use the knobs to scroll through the list and push the knobs to check an existing task.
+
+![](https://hackmd.io/_uploads/B1l4uR4ba.jpg)
+Car Racing Game
+Modern refrigerators sometimes come with built-in screens for various smart features. Integrate the game to display and play directly from the refrigerator while cooking, so that you can monitor the stove top while not having to get bored in the kitchen with the little joystick on the fridge.
+
+![](https://hackmd.io/_uploads/BkUUTREWa.jpg)
+Flappy Bird
+Coffee brewers with built-in touch displays can be perfect for Flappy Bird. While waiting for your awesome cup of coffee, enojy this fun little game using the buttons on the machine. The game will automatically end and return a "WIN" screen if the player kept the bird alive until the coffee finished brewing.
+
+![](https://hackmd.io/_uploads/SJywp5EbT.jpg)
 3D Map Generator
- ![](https://hackmd.io/_uploads/SJywp5EbT.jpg)
- 
 The 3D Map Generator adeptly identifies surrounding objects and terrains. Users can either hold the generator or position it on a flat surface, prompting the device to scan the entirety of the view and subsequently display a 3D map on the screen. The device is equipped with two buttons and a joystick controller to facilitate interaction. The joystick enables users to rotate the map a full 360 degrees, providing a comprehensive view of the area. Meanwhile, the buttons permit users to either generate a new map or browse through existing maps with ease.
  
 **\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
 
-**\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
+We need to further study the use cases for our designs and research the users' behavior if they does not have a similar device at hand to see the feasibility, ergonomics, and practicality of our designs. In addition, we need to consider when integrating a game into certain appliances, especially those that generate heat or have moving parts, if it will pose any safety risks. We should also consider if the game's integration enhancing the user's experience with the appliance or becoming a nuisance. Different appliances have different screen sizes and resolutions. Testing how the game looks and feels on these various displays will be crucial. Getting feedback from potential users will provide insights into usability, user experience, and any unforeseen issues.
 
 **\*\*\*Explain the rationale for the design.\*\*\*** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
 
+- The device's size must be compact enough for easy portability, allowing users to scan various environments without it being cumbersome.
+- A handheld form ensures that users can elevate the device if necessary to capture a wider view, especially in terrains with obstructions.
+- A joystick offers intuitive control for rotating the 3D map. Its 360-degree maneuverability provides users with a full, panoramic view of the scanned area.
+- Compared to touch gestures or buttons, a joystick offers precision, especially when viewing intricate details of a 3D map.
+- The device needs to integrate advanced sensors to accurately detect surrounding objects and terrains. The sensor's capability determines the fidelity and accuracy of the 3D map.
+- The scanning mechanism should be quick, capturing a full view in a short duration to enhance user convenience.
+
 Build a cardboard prototype of your design.
-
+**\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
 **\*\*\*Document your rough prototype.\*\*\***
+![](https://hackmd.io/_uploads/BySKq04-T.png)
 
+the prototype have a button for start scanning and a display shows the status of the scanning, and it have a sensor at the top of the gun.
 
 LAB PART 2
 
