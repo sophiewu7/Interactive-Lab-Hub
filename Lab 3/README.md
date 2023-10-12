@@ -1,281 +1,350 @@
-# Chatterboxes
+# Ph-UI!!!
+
 **NAMES OF COLLABORATORS HERE**
-John Li (jl4239), Shiying Wu (sw2298), Mingze Gao (mg2454), Crystal Chong (cc2795), Qianxin(Carl) Gan (qg72), Mingzhe Sun (ms3636)
-
-[![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://www.youtube.com/embed/Q8FWzLMobx0?start=19)
-
-In this lab, we want you to design interaction with a speech-enabled device--something that listens and talks to you. This device can do anything *but* control lights (since we already did that in Lab 1).  First, we want you first to storyboard what you imagine the conversational interaction to be like. Then, you will use wizarding techniques to elicit examples of what people might say, ask, or respond.  We then want you to use the examples collected from at least two other people to inform the redesign of the device.
 
 
-## Prep for Part 1: Get the Latest Content and Pick up Additional Parts 
+For lab this week, we focus both on sensing, to bring in new modes of input into your devices, as well as prototyping the physical look and feel of the device. You will think about the physical form the device needs to perform the sensing as well as present the display or feedback about what was sensed. 
 
-### Pick up Web Camera If You Don't Have One
+## Part 1 Lab Preparation
 
-Students who have not already received a web camera will receive their [IMISES web cameras](https://www.amazon.com/Microphone-Speaker-Balance-Conference-Streaming/dp/B0B7B7SYSY/ref=sr_1_3?keywords=webcam%2Bwith%2Bmicrophone%2Band%2Bspeaker&qid=1663090960&s=electronics&sprefix=webcam%2Bwith%2Bmicrophone%2Band%2Bsp%2Celectronics%2C123&sr=1-3&th=1) on Thursday at the beginning of lab. If you cannot make it to class on Thursday, please contact the TAs to ensure you get your web camera. 
+### Get the latest content:
+As always, pull updates from the class Interactive-Lab-Hub to both your Pi and your own GitHub repo. As we discussed in the class, there are 2 ways you can do so:
 
-**Please note:** connect the webcam/speaker/microphone while the pi is *off*. 
 
-### Get the Latest Content
-
-As always, pull updates from the class Interactive-Lab-Hub to both your Pi and your own GitHub repo. There are 2 ways you can do so:
-
-**[recommended]** Option 1: On the Pi, `cd` to your `Interactive-Lab-Hub`, pull the updates from upstream (class lab-hub) and push the updates back to your own GitHub repo. You will need the *personal access token* for this.
+Option 1: On the Pi, `cd` to your `Interactive-Lab-Hub`, pull the updates from upstream (class lab-hub) and push the updates back to your own GitHub repo. You will need the personal access token for this.
 
 ```
 pi@ixe00:~$ cd Interactive-Lab-Hub
-pi@ixe00:~/Interactive-Lab-Hub $ git pull upstream Fall2023
+pi@ixe00:~/Interactive-Lab-Hub $ git pull upstream Fall2022
 pi@ixe00:~/Interactive-Lab-Hub $ git add .
-pi@ixe00:~/Interactive-Lab-Hub $ git commit -m "get lab3 updates"
+pi@ixe00:~/Interactive-Lab-Hub $ git commit -m "get lab4 content"
 pi@ixe00:~/Interactive-Lab-Hub $ git push
 ```
 
-Option 2: On your your own GitHub repo, [create pull request](https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2022Fall/readings/Submitting%20Labs.md) to get updates from the class Interactive-Lab-Hub. After you have latest updates online, go on your Pi, `cd` to your `Interactive-Lab-Hub` and use `git pull` to get updates from your own GitHub repo.
+Option 2: On your own GitHub repo, [create pull request](https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2021Fall/readings/Submitting%20Labs.md) to get updates from the class Interactive-Lab-Hub. After you have latest updates online, go on your Pi, `cd` to your `Interactive-Lab-Hub` and use `git pull` to get updates from your own GitHub repo.
 
-## Part 1.
-### Setup 
+Option 3: (preferred) use the Github.com interface to update the changes.
 
-*DO NOT* forget to work on your virtual environment! 
+### Start brainstorming ideas by reading: 
+* [What do prototypes prototype?](https://www.semanticscholar.org/paper/What-do-Prototypes-Prototype-Houde-Hill/30bc6125fab9d9b2d5854223aeea7900a218f149)
+* [Paper prototyping](https://www.uxpin.com/studio/blog/paper-prototyping-the-practical-beginners-guide/) is used by UX designers to quickly develop interface ideas and run them by people before any programming occurs. 
+* [Cardboard prototypes](https://www.youtube.com/watch?v=k_9Q-KDSb9o) help interactive product designers to work through additional issues, like how big something should be, how it could be carried, where it would sit. 
+* [Tips to Cut, Fold, Mold and Papier-Mache Cardboard](https://makezine.com/2016/04/21/working-with-cardboard-tips-cut-fold-mold-papier-mache/) from Make Magazine.
+* [Surprisingly complicated forms](https://www.pinterest.com/pin/50032245843343100/) can be built with paper, cardstock or cardboard.  The most advanced and challenging prototypes to prototype with paper are [cardboard mechanisms](https://www.pinterest.com/helgangchin/paper-mechanisms/) which move and change. 
+* [Dyson Vacuum Cardboard Prototypes](http://media.dyson.com/downloads/JDF/JDF_Prim_poster05.pdf)
+<p align="center"><img src="https://dysonthedesigner.weebly.com/uploads/2/6/3/9/26392736/427342_orig.jpg"  width="200" > </p>
 
-Run the setup script
-```chmod u+x setup.sh && sudo ./setup.sh  ```
+### Gathering materials for this lab:
 
-### Text to Speech 
+* Cardboard (start collecting those shipping boxes!)
+* Found objects and materials--like bananas and twigs.
+* Cutting board
+* Cutting tools
+* Markers
+* New hardware for your kit will be handed out. Update your parts list. 
 
-In this part of lab, we are going to start peeking into the world of audio on your Pi! 
+(We do offer shared cutting board, cutting tools, and markers on the class cart during the lab, so do not worry if you don't have them!)
 
-We will be using the microphone and speaker on your webcamera. In the directory is a folder called `speech-scripts` containing several shell scripts. `cd` to the folder and list out all the files by `ls`:
+## Deliverables \& Submission for Lab 4
+
+The deliverables for this lab are, writings, sketches, photos, and videos that show what your prototype:
+* "Looks like": shows how the device should look, feel, sit, weigh, etc.
+* "Works like": shows what the device can do.
+* "Acts like": shows how a person would interact with the device.
+
+For submission, the readme.md page for this lab should be edited to include the work you have done:
+* Upload any materials that explain what you did, into your lab 4 repository, and link them in your lab 4 readme.md.
+* Link your Lab 4 readme.md in your main Interactive-Lab-Hub readme.md. 
+* Group members can turn in one repository, but make sure your Hub readme.md links to the shared repository.
+* Labs are due on Mondays, make sure to submit your Lab 4 readme.md to Canvas.
+
+
+## Lab Overview
+
+A) [Capacitive Sensing](#part-a)
+
+B) [OLED screen](#part-b) 
+
+C) [Paper Display](#part-c)
+
+D) [Materiality](#part-d)
+
+E) [Servo Control](#part-e)
+
+F) [Camera Test](#part-f)
+
+G) [Record the interaction](#part-g)
+
+## The Report (Part 1: A-D, Part 2: E-F)
+
+### Part A
+### Capacitive Sensing, a.k.a. Human-Twizzler Interaction 
+
+We want to introduce you to the [capacitive sensor](https://learn.adafruit.com/adafruit-mpr121-gator) in your kit. It's one of the most flexible input devices we are able to provide. At boot, it measures the capacitance on each of the 12 contacts. Whenever that capacitance changes, it considers it a user touch. You can attach any conductive material. In your kit, you have copper tape that will work well, but don't limit yourself! In the example below, we use Twizzlers--you should pick your own objects.
+
+
+<p float="left">
+<img src="https://cdn-learn.adafruit.com/guides/cropped_images/000/003/226/medium640/MPR121_top_angle.jpg?1609282424" height="150" />
+</p>
+
+Plug in the capacitive sensor board with the QWIIC connector. Connect your Twizzlers with either the copper tape or the alligator clips (the clips work better). Install the latest requirements from your working virtual environment:
 
 ```
-pi@ixe00:~/speech-scripts $ ls
-Download        festival_demo.sh  GoogleTTS_demo.sh  pico2text_demo.sh
-espeak_demo.sh  flite_demo.sh     lookdave.wav
+(circuitpython) pi@ixe00:~/Interactive-Lab-Hub/Lab 4 $ pip install -r requirements.txt
 ```
 
-You can run these shell files `.sh` by typing `./filename`, for example, typing `./espeak_demo.sh` and see what happens. Take some time to look at each script and see how it works. You can see a script by typing `cat filename`. For instance:
+<img src="https://media.discordapp.net/attachments/679721816318803975/823299613812719666/PXL_20210321_205742253.jpg" width=400>
+These Twizzlers are connected to pads 6 and 10. When you run the code and touch a Twizzler, the terminal will print out the following
 
 ```
-pi@ixe00:~/speech-scripts $ cat festival_demo.sh 
-#from: https://elinux.org/RPi_Text_to_Speech_(Speech_Synthesis)#Festival_Text_to_Speech
-```
-You can test the commands by running
-```
-echo "Just what do you think you're doing, Dave?" | festival --tts
+(circuitpython) pi@ixe00:~/Interactive-Lab-Hub/Lab 4 $ python cap_test.py 
+Twizzler 10 touched!
+Twizzler 6 touched!
 ```
 
-Now, you might wonder what exactly is a `.sh` file? 
-Typically, a `.sh` file is a shell script which you can execute in a terminal. The example files we offer here are for you to figure out the ways to play with audio on your Pi!
+### Part B
+### More sensors
 
-You can also play audio files directly with `aplay filename`. Try typing `aplay lookdave.wav`.
+#### Light/Proximity/Gesture sensor (APDS-9960)
 
-\*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
-(This shell file should be saved to your own repo for this lab.)
-Here's the [shell file](./speech-scripts/greetings.sh) greeting us in our favorite TTS engine - the GoogleTTS.
+We here want you to get to know this awesome sensor [Adafruit APDS-9960](https://www.adafruit.com/product/3595). It is capable of sensing proximity, light (also RGB), and gesture! 
 
-Greeting shell file located in `\speech-scripts\greetings.sh`.
+<img src="https://cdn-shop.adafruit.com/970x728/3595-06.jpg" width=200>
+
+Connect it to your pi with Qwiic connector and try running the three example scripts individually to see what the sensor is capable of doing!
+
+```
+(circuitpython) pi@ixe00:~/Interactive-Lab-Hub/Lab 4 $ python proximity_test.py
+...
+(circuitpython) pi@ixe00:~/Interactive-Lab-Hub/Lab 4 $ python gesture_test.py
+...
+(circuitpython) pi@ixe00:~/Interactive-Lab-Hub/Lab 4 $ python color_test.py
+...
+```
+
+You can go the the [Adafruit GitHub Page](https://github.com/adafruit/Adafruit_CircuitPython_APDS9960) to see more examples for this sensor!
+
+#### Rotary Encoder (optional)
+
+> **_NOTE:_**  Not in the kit yet - skip this.
+
+A rotary encoder is an electro-mechanical device that converts the angular position to analog or digital output signals. The [Adafruit rotary encoder](https://www.adafruit.com/product/4991#technical-details) we ordered for you came with separate breakout board and encoder itself, that is, they will need to be soldered if you have not yet done so! We will be bringing the soldering station to the lab class for you to use, also, you can go to the MakerLAB to do the soldering off-class. Here is some [guidance on soldering](https://learn.adafruit.com/adafruit-guide-excellent-soldering/preparation) from Adafruit. When you first solder, get someone who has done it before (ideally in the MakerLAB environment). It is a good idea to review this material beforehand so you know what to look at.
+
+<p float="left">
+<img src="https://cdn-shop.adafruit.com/970x728/377-02.jpg" height="200" />
+<img src="https://cdn-shop.adafruit.com/970x728/4991-09.jpg" height="200">
+</p>
+
+Connect it to your pi with Qwiic connector and try running the example script, it comes with an additional button which might be useful for your design!
+
+```
+(circuitpython) pi@ixe00:~/Interactive-Lab-Hub/Lab 4 $ python encoder_test.py
+```
+
+You can go to the [Adafruit Learn Page](https://learn.adafruit.com/adafruit-i2c-qt-rotary-encoder/python-circuitpython) to learn more about the sensor! The sensor actually comes with an LED (neo pixel): Can you try lighting it up? 
+
+#### Joystick (optional)
+
+A [joystick](https://www.sparkfun.com/products/15168) can be used to sense and report the input of the stick for it pivoting angle or direction. It also comes with a button input!
+
+<p float="left">
+<img src="https://cdn.sparkfun.com//assets/parts/1/3/5/5/8/15168-SparkFun_Qwiic_Joystick-01.jpg" height="200" />
+</p>
+
+Connect it to your pi with Qwiic connector and try running the example script to see what it can do!
+
+```
+(circuitpython) pi@ixe00:~/Interactive-Lab-Hub/Lab 4 $ python joystick_test.py
+```
+
+You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Joystick_Py) to learn more about the sensor!
+
+#### Distance Sensor
+
+Earlier we have asked you to play with the proximity sensor, which is able to sense objects within a short distance. Here, we offer [Sparkfun Proximity Sensor Breakout](https://www.sparkfun.com/products/15177), With the ability to detect objects up to 20cm away.
+
+<p float="left">
+<img src="https://cdn.sparkfun.com//assets/parts/1/3/5/9/2/15177-SparkFun_Proximity_Sensor_Breakout_-_20cm__VCNL4040__Qwiic_-01.jpg" height="200" />
+</p>
+
+Connect it to your pi with Qwiic connector and try running the example script to see how it works!
+
+```
+(circuitpython) pi@ixe00:~/Interactive-Lab-Hub/Lab 4 $ python qwiic_distance.py
+```
+
+You can go to the [SparkFun GitHub Page](https://github.com/sparkfun/Qwiic_Proximity_Py) to learn more about the sensor and see other examples!
+
+### Part C
+### Physical considerations for sensing
+
+Usually, sensors need to be positioned in specific locations or orientations to make them useful for their application. Now that you've tried a bunch of the sensors, pick one that you would like to use, and an application where you use the output of that sensor for an interaction. For example, you can use a distance sensor to measure someone's height if you position it overhead and get them to stand under it.
+
+**\*\*\*Draw 5 sketches of different ways you might use your sensor, and how the larger device needs to be shaped in order to make the sensor useful.\*\*\***
+
+We picked the distance sensor as our primary sensor for the following ideas:
+
+1. Handheld Device for Visually Impaired Individuals (detect the distance of obstacles)![](https://hackmd.io/_uploads/BJ7vE-fZa.jpg)
+
+2. Modern Doorbell System (detect people approachness when within certian distance of the door)
+
+![](https://hackmd.io/_uploads/SkcqOjm-p.png)
+
+3. Dance Motion Capturer / Detector
+Distance and gesture sensors are used to help detect and capture motions for a dancing game that can be played on the TV.
+![](https://hackmd.io/_uploads/SkM43uAxT.png)
+
+
+4. Food delivery defender (detect the absense of food)
+
+![](https://hackmd.io/_uploads/rk-MTomWa.png)
+
+
+5. Home Light Assitant
+During the night or when the outdoor light is dimmed, turn on the light of the room when users are within the detectable area.
+![](https://hackmd.io/_uploads/H19kgKCep.png)
+
+**\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+
+
+**\*\*\*Pick one of these designs to prototype.\*\*\***
+
+
+
+### Part D
+### Physical considerations for displaying information and housing parts
+
+
+![](https://hackmd.io/_uploads/rkzSx3XWa.png)
+
+
+
+Here is a Pi with a paper faceplate on it to turn it into a display interface:
+
+<img src="https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2020Fall/images/paper_if.png?raw=true"  width="250"/>
+
+
+This is fine, but the mounting of the display constrains the display location and orientation a lot. Also, it really only works for applications where people can come and stand over the Pi, or where you can mount the Pi to the wall.
+
+Here is another prototype for a paper display:
+
+<img src="https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2020Fall/images/b_box.png?raw=true"  width="250"/>
+
+Your kit includes these [SparkFun Qwiic OLED screens](https://www.sparkfun.com/products/17153). These use less power than the MiniTFTs you have mounted on the GPIO pins of the Pi, but, more importantly, they can be more flexibly mounted elsewhere on your physical interface. The way you program this display is almost identical to the way you program a  Pi display. Take a look at `oled_test.py` and some more of the [Adafruit examples](https://github.com/adafruit/Adafruit_CircuitPython_SSD1306/tree/master/examples).
+
+<p float="left">
+<img src="https://cdn.sparkfun.com//assets/parts/1/6/1/3/5/17153-SparkFun_Qwiic_OLED_Display__0.91_in__128x32_-01.jpg" height="200" />
+</p>
+
+
+It holds a Pi and usb power supply, and provides a front stage on which to put writing, graphics, LEDs, buttons or displays.
+
+This design can be made by scoring a long strip of corrugated cardboard of width X, with the following measurements:
+
+| Y height of box <br> <sub><sup>- thickness of cardboard</sup></sub> | Z  depth of box <br><sub><sup>- thickness of cardboard</sup></sub> | Y height of box  | Z  depth of box | H height of faceplate <br><sub><sup>* * * * * (don't make this too short) * * * * *</sup></sub>|
+| --- | --- | --- | --- | --- | 
+
+Fold the first flap of the strip so that it sits flush against the back of the face plate, and tape, velcro or hot glue it in place. This will make a H x X interface, with a box of Z x X footprint (which you can adapt to the things you want to put in the box) and a height Y in the back. 
+
+Here is an example:
+
+<img src="https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/blob/2020Fall/images/horoscope.png?raw=true"  width="250"/>
+
+Think about how you want to present the information about what your sensor is sensing! Design a paper display for your project that communicates the state of the Pi and a sensor. Ideally you should design it so that you can slide the Pi out to work on the circuit or programming, and then slide it back in and reattach a few wires to be back in operation.
+ 
+**\*\*\*Sketch 5 designs for how you would physically position your display and any buttons or knobs needed to interact with it.\*\*\***
+
+1. Home center control panel
+2. Intergrated Task completion reminder
+3. Car racing game
+4. Flappy bird game
+5. 3D-Map generator
+![](https://hackmd.io/_uploads/SyP8Gc4-p.jpg)
+ Home center control panel
+ Position the knobs on the right side of the screen that displays the light information. Use the knobs to change the light level and color temperature. Push the knobs to turn on and off the light.
+ ![](https://hackmd.io/_uploads/HyKwz9EZ6.jpg)
+ Intergrated Task completion reminder
+ Position the knobs on the right side of the screen that displays the task list. Use the knobs to scroll through the list and push the knobs to check an existing task.
+ 
+
+3D Map Generator
+ ![](https://hackmd.io/_uploads/SJywp5EbT.jpg)
+ 
+The 3D Map Generator adeptly identifies surrounding objects and terrains. Users can either hold the generator or position it on a flat surface, prompting the device to scan the entirety of the view and subsequently display a 3D map on the screen. The device is equipped with two buttons and a joystick controller to facilitate interaction. The joystick enables users to rotate the map a full 360 degrees, providing a comprehensive view of the area. Meanwhile, the buttons permit users to either generate a new map or browse through existing maps with ease.
+ 
+**\*\*\*What are some things these sketches raise as questions? What do you need to physically prototype to understand how to anwer those questions?\*\*\***
+
+**\*\*\*Pick one of these display designs to integrate into your prototype.\*\*\***
+
+**\*\*\*Explain the rationale for the design.\*\*\*** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
+
+Build a cardboard prototype of your design.
+
+**\*\*\*Document your rough prototype.\*\*\***
+
+
+LAB PART 2
+
+### Part 2
+
+Following exploration and reflection from Part 1, complete the "looks like," "works like" and "acts like" prototypes for your design, reiterated below.
+
+### Part E (Optional)
+### Servo Control with Joystick
+> **_NOTE:_**  Not in the kit yet.
+
+In the class kit, you should be able to find the [Qwiic Servo Controller](https://www.sparkfun.com/products/16773) and [Micro Servo Motor SG51](https://www.adafruit.com/product/2201). The Qwiic Servo Controller will need external power supply to drive, which is included in your kit. Connect the servo controller to the miniPiTFT through qwiic connector and connect the external battery to the 2-Pin JST port (ower port) on the servo controller. Connect your servo to channel 2 on the controller, make sure the brown is connected to GND and orange is connected to PWM.
+
+<img src="Servo_Setup.jpg" width="400"/>
+
+In this exercise, we will be using the nice [ServoKit library](https://learn.adafruit.com/16-channel-pwm-servo-driver/python-circuitpython) developed by Adafruit! We will continue to use the `circuitpython` virtual environment we created. Activate the virtual environment and make sure to install the latest required libraries by running:
+
+```
+(circuitpython) pi@ixe00:~/Interactive-Lab-Hub/Lab 4 $ pip3 install -r requirements.txt
+```
+
+A servo motor is a rotary actuator or linear actuator that allows for precise control of angular or linear position. The position of a servo motor is set by the width of an electrical pulse, that is, we can use PWM (pulse-width modulation) to set and control the servo motor position. You can read [this](https://learn.adafruit.com/adafruit-arduino-lesson-14-servo-motors/servo-motors) to learn a bit more about how exactly a servo motor works.
+
+Now that you have a basic idea of what a servo motor is, look into the script `servo_test.py` we provide. In line 14, you should see that we have set up the min_pulse and max_pulse corresponding to the servo turning 0 - 180 degrees. Try running the servo example code now and see what happens:
+
+```
+(circuitpython) pi@ixe00:~/Interactive-Lab-Hub/Lab 4 $ python servo_test.py
+```
+
+It is also possible to control the servo using the sensors mentioned in as in part A and part B, and/or from some of the buttons or parts included in your kit, the simplest way might be to chain Qwiic buttons to the other end of the Qwiic OLED. Like this:
+
+<p align="center"> <img src="chaining.png"  width="200" ></p>
+
+You can then call whichever control you like rather than setting a fixed value for the servo. For more information on controlling Qwiic devices, Sparkfun has several python examples, such as [this](https://learn.sparkfun.com/tutorials/qwiic-joystick-hookup-guide/all#python-examples).
+
+We encourage you to try using these controls, **while** paying particular attention to how the interaction changes depending on the position of the controls. For example, if you have your servo rotating a screen (or a piece of cardboard) from one position to another, what changes about the interaction if the control is on the same side of the screen, or the opposite side of the screen? Trying and retrying different configurations generally helps reveal what a design choice changes about the interaction -- _make sure to document what you tried_!
+
+### Part F (Optional)
+### Camera
+You can use the inputs and outputs from the video camera in the kit. 
+We provide another script called camera_test.py to test the USB camera on raspberry pi. 
+It uses qt to render a video to the screen, so it is necessary to connect a screen or to connect via VNC to run this script. 
+
+First install some more dependencies into your virtual environment. OpenCV should already be installed on the Pi for the super user. 
+
+```
+sudo apt-get install portaudio19-dev python-all-dev
+pip install opencv-python pyaudio pygame
+```
+
+Once executed the script will render the camera output, press 'q' to stop video and record a sound through the microphone which will be played back by specificing the audio output. 
 
 ---
-Bonus:
-[Piper](https://github.com/rhasspy/piper) is another fast neural based text to speech package for raspberry pi which can be installed easily through python with:
-```
-pip install piper-tts
-```
-and used from the command line. Running the command below the first time will download the model, concurrent runs will be faster. 
-```
-echo 'Welcome to the world of speech synthesis!' | piper \
-  --model en_US-lessac-medium \
-  --output_file welcome.wav
-```
-Check the file that was created by running `aplay welcome.wav`. Many more languages are supported and audio can be streamed dirctly to an audio output, rather than into an file by:
+The video is rendered locally on the pi. For wizarding interactions and prototyping it can be necessary to stream the video to another device such as your laptop. A wizard, observing the user and acting as a computer vision algorithm, can then trigger interactions remotley, such as we did in the tinkerbelle lab.
+
+The following resources are good starts on how to stream video: 
+* [OpenCV – Stream video to web browser/HTML page](https://pyimagesearch.com/2019/09/02/opencv-stream-video-to-web-browser-html-page/)
+* [Live video streaming over network with OpenCV and ImageZMQ](https://pyimagesearch.com/2019/04/15/live-video-streaming-over-network-with-opencv-and-imagezmq/)
+### Part G
+### Record
+
+Document all the prototypes and iterations you have designed and worked on! Again, deliverables for this lab are writings, sketches, photos, and videos that show what your prototype:
+* "Looks like": shows how the device should look, feel, sit, weigh, etc.
+* "Works like": shows what the device can do
+* "Acts like": shows how a person would interact with the device
 
-```
-echo 'This sentence is spoken first. This sentence is synthesized while the first sentence is spoken.' | \
-  piper --model en_US-lessac-medium --output-raw | \
-  aplay -r 22050 -f S16_LE -t raw -
-```
-  
-### Speech to Text
-
-Next setup speech to text. We are using a speech recognition engine, [Vosk](https://alphacephei.com/vosk/), which is made by researchers at Carnegie Mellon University. Vosk is amazing because it is an offline speech recognition engine; that is, all the processing for the speech recognition is happening onboard the Raspberry Pi. 
-```
-pip install vosk
-pip install sounddevice
-```
-
-Test if vosk works by transcribing text:
-
-```
-vosk-transcriber -i recorded_mono.wav -o test.txt
-```
-
-You can use vosk with the microphone by running 
-```
-python test_microphone.py -m en
-```
-
-\*\***Write your own shell file that verbally asks for a numerical based input (such as a phone number, zipcode, number of pets, etc) and records the answer the respondent provides.**\*\*
-
-Here's the [shell file](./speech-scripts/transcribe.sh) that acts as a voicemail message asking for a callback number, records the inputs, and transcribes to numerical outputs. The shell file also invokes a python script [ask_and_record.py](./speech-scripts/ask_and_record.py) that uses `vosk` to transcribe the audio.
-
-[![Voice Mail](https://hackmd.io/_uploads/SyaHD7Je6.jpg)](https://www.youtube.com/watch?v=cD3JbQLfFVg)
-
-
-
-### Serving Pages
-
-In Lab 1, we served a webpage with flask. In this lab, you may find it useful to serve a webpage for the controller on a remote device. Here is a simple example of a webserver.
-
-```
-pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python server.py
- * Serving Flask app "server" (lazy loading)
- * Environment: production
-   WARNING: This is a development server. Do not use it in a production deployment.
-   Use a production WSGI server instead.
- * Debug mode: on
- * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 162-573-883
-```
-From a remote browser on the same network, check to make sure your webserver is working by going to `http://<YourPiIPAddress>:5000`. You should be able to see "Hello World" on the webpage.
-
-### Storyboard
-
-Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.) 
-
-\*\***Post your storyboard and diagram here.**\*\*
-![](https://hackmd.io/_uploads/B1RiW_yep.jpg)
-
-
-
-Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses. 
-
-\*\***Please describe and document your process.**\*\*
-
-The Hotel Robot Butler, affectionately known as "TT", is an innovative and advanced speech-enabled device designed to revolutionize the guest experience within hospitality establishments, particularly hotels and resorts. TT is a cutting-edge fusion of artificial intelligence and robotics, seamlessly integrated into the hotel's environment to provide personalized and efficient service to guests.
-
-To interact with "TT", the customer will need to say a sentence that includes the keyword "TT." We chose this name because it is not a word commonly used in conversation. Therefore, the device will not be activated accidentally. The device can provide any services offered by the hotel, such as breakfast options, locating objects in the room, ordering towels, room service, and more. It has an embedded AI language model that enables it to process and respond to conversations.
-
-
-### Acting out the dialogue
-
-Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing.  Please record this interaction (for example, using Zoom's record feature).
-
-Intended Script:
-Question: what is the weather today?
-Robot: Today is sunny, tempature of 75F
-Question: Can you replace the towel?
-Robot: For sure, A servant will come shortly.
-Question: what is the time now?
-Robot: Now is 9:30AM Sep 23rd
-Question: Can you tell me a joke?
-Robot: for sure, XXXX hahahahaha
-Question: when does breakfast time end?
-Robot: The breakfast hours is 6:30 to 9:30 everyday at floor 2nd
-Question: can you connect me to front desk?
-Robot: Calling Front Desk...
-
-Actual Script
-Kevin: Morning TT.
-Robot Butler: Morning Kevin, how I can help you?
-Kevin: What you get for breakfast today?
-Robot Butler: For breakfast today, we have a selection of options. You can choose from a variety of cereals, fresh fruits, and toast with your choice of spreads. Additionally, there are some hot options like scrambled eggs, bacon, and pancakes. Please let me know your preference, and I'll prepare it for you.
-Kevin: Can you give me a French toast with wipped cream and two bacons, and some blueberry please.
-Robot Butler: No problem, I will send them your way. What else can I help you with?
-Kevin: Yes TT, can you let me know where is my glasses?
-Robot Butler: Let me check. Your glass are on the sink of the bathroom.
-Kevin: Thank you, TT. 
-
-Click to watch the video:
-[![Act Out](https://hackmd.io/_uploads/rk0TPmke6.jpg)](https://www.youtube.com/watch?v=MXm7EFBcMv8)
-
-\*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
-    Before the dialogue, Our script was preping for questions like can you replace the towel or put do not disturbe, or some questions like weather or tempature. 
-    But when we acted out, the first question was on what breakfast does the hotel provides and none of the question was expact, that was really surpising. 
-    We figured it would be extremely hard to 'hard code' a script to fullfill it's designed purpose. NLP or big data model will be essanital for the chat bot to be  comprehensive in practise.
-
-
-### Wizarding with the Pi (optional)
-In the [demo directory](./demo), you will find an example Wizard of Oz project. In that project, you can see how audio and sensor data is streamed from the Pi to a wizard controller that runs in the browser.  You may use this demo code as a template. By running the `app.py` script, you can see how audio and sensor data (Adafruit MPU-6050 6-DoF Accel and Gyro Sensor) is streamed from the Pi to a wizard controller that runs in the browser `http://<YouPiIPAddress>:5000`. You can control what the system says from the controller as well!
-
-\*\***Describe if the dialogue seemed different than what you imagined, or when acted out, when it was wizarded, and how.**\*\*
-
-
-# Lab 3 Part 2
-
-For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
-
-## Prep for Part 2
-
-1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings
-
-With our Part 1 creation, the Hotel Robot Butler, there exists a requirement for users to possess some prior knowledge or instructions to effectively engage with the device. Moreover, it can be uncertain as to the range of services the device is equipped to handle. In light of the upcoming Halloween season, we have chosen to craft a device that seamlessly integrates into Halloween decorations and offers an intuitive and straightforward interaction experience for users.
-
-
-2. What are other modes of interaction _beyond speech_ that you might also use to clarify how to interact?
-
-In the context of our Halloween device, we are contemplating the incorporation of additional interaction modes beyond speech to enhance user clarity. One approach involves utilizing a sensor that can detect when someone is approaching our door, subsequently triggering our speech detection feature. Additionally, we are considering the utilization of a servo motor mechanism to deliver an element of surprise or scare to the user, complementing the overall interaction experience.
-
-3. Make a new storyboard, diagram and/or script based on these reflections.
-![](https://hackmd.io/_uploads/BJN_X2_la.jpg)
-
-
-Brainstorming Ideas:
-- A doorbell trick-or-treat
-
-## Prototype your system
-
-The system should:
-* use the Raspberry Pi 
-* use one or more sensors
-* require participants to speak to it. 
-
-*Document how the system works*
-
-**The system operates as follows:**
-
-**Distance Sensor Activation:** A distance sensor is employed to monitor the proximity of individuals approaching the door. When a person comes within 0.5 meters of the door, where the device is securely attached, this sensor triggers the activation of the interaction system.
-
-**Speech Detection:** Upon activation, the system initiates its speech detection feature, actively listening for the specific keyword, "trick or treat." This keyword serves as the trigger for further interaction.
-
-**Random Puzzle Generation:** Subsequently, the system randomly selects one of the 100 available puzzles from its database. This selected puzzle is then vocalized by the system, providing the user with a unique Halloween-themed challenge.
-
-**User Input:** After hearing the puzzle, the user is prompted to input their solution through the keyboard interface provided by the device. The keyboard allows the user to type in their answer.
-
-**Answer Validation:** Once the user submits their answer, the system performs an immediate validation check to determine its correctness. If the user's answer aligns with the correct solution, the system triggers a rewarding response.
-
-**Reward or Haunting:** In the event that the user's answer is correct, the system dispenses candy to the user as a Halloween treat, enhancing the interactive experience. However, if the answer is incorrect, the system engages a spooky or haunting response to add an element of surprise and excitement to the Halloween encounter.
-
-*Include videos or screencaptures of both the system and the controller.*
-
-*Click to watch the video: Introduction of the device*
-[![Act Out](https://hackmd.io/_uploads/H1tFAlFga.png)](https://www.youtube.com/watch?v=yqGF0PsgBKE)
-
-*Click to watch the video: Acting out*
-[![Act Out](https://hackmd.io/_uploads/rk0Ozbtlp.png)](https://youtu.be/3kqRtDJEGQg)
-
-
-## Test the system
-Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)
-
-Answer the following:
-
-### What worked well about the system and what didn't?
-
-
-The distance detection feature effectively prevented speech recognition misinterpretation. This feature allows us to restrict false triggers from other voices, ensuring that only individuals in close proximity to the device can activate the entire system.
-
-However, our current method for answering questions has limitations. We are restricted to using a keypad for input, which means that our system can only handle numerical questions.
-
-### What worked well about the controller and what didn't?
-
-The controller's integration of multiple sensors was impressive, especially its 500mm range which felt just right for detecting someone's proximity without being intrusive. This allowed for a fluid transition from sensing someone nearby to awaiting a voice command. However, a noticeable challenge was the voice recognition with individuals. Given the variety in pronunciations, there were instances where the controller struggled to accurately recognize the "trick or treat" phrase. Improvements in its ability to discern and adapt to diverse voice inputs would greatly enhance its reliability and user experience. 
-
-### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
-
-Through WoZ interactions, we gain valuable insights into a wide range of potential user behaviors when interacting with the system. For instance, before actually implemented our system, we started with a WoZ interactions. We discovered that user responses to our questions can be highly unpredictable. Consequently, we implemented restrictions on user input with hardware resource, keypad.
-
-Furthermore, designing a more autonomous system is an ongoing, iterative journey. We continually uncover opportunities for enhancement, ensuring that our system evolves to meet user needs and expectations effectively.
-
-### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
-
-Recording the distances at which participants initiate interactions might reveal nuances in their approach behavior. Additionally, the voices of each individual will be recorded and consolidated into a dataset. By implementing machine learning algorithms, this dataset will aid the system in detecting the myriad ways people might pronounce "trick or treat," ensuring more accurate and inclusive activation. To deepen this interaction dataset, introducing additional sensors would be insightful. A camera, for instance, could observe facial expressions and body language during interactions, while an ambient light sensor might indicate if the device's visibility or attraction changes under different lighting conditions.
