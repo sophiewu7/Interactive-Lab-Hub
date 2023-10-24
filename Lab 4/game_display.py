@@ -57,6 +57,7 @@ def draw_game(pull):
     oled.image(image)
     oled.show()
 
+# states = ["start", "game", "end"]
 curr_state = "end"
 
 while True:
