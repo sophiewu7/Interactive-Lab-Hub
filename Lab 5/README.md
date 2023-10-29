@@ -1,6 +1,7 @@
 # Observant Systems
 
 **NAMES OF COLLABORATORS HERE**
+John Li (jl4239), Shiying Wu (sw2298), Mingze Gao (mg2454), Crystal Chong (cc2795), Qianxin(Carl) Gan (qg72), Mingzhe Sun (ms3636)
 
 
 For lab this week, we focus on creating interactive systems that can detect and respond to events or stimuli in the environment of the Pi, like the Boat Detector we mentioned in lecture. 
@@ -71,6 +72,12 @@ The first 2 inferences will be slower. Now, you can try placing several objects 
 Read the `infer.py` script, and get familiar with the code. You can change the video resolution and frames per second (fps). You can also easily use the weights of other pre-trained models. You can see examples of other models [here](https://pytorch.org/tutorials/intermediate/realtime_rpi.html#model-choices). 
 
 
+**Testing out Pytorch for object detaction**
+
+![](https://hackmd.io/_uploads/r17IELiMa.png)
+
+
+
 ### Machine Vision With Other Tools
 The following sections describe tools ([MediaPipe](#mediapipe) and [Teachable Machines](#teachable-machines)).
 
@@ -97,7 +104,11 @@ Consider how you might use this position based approach to create an interaction
 
 (You might also consider how this notion of percentage control with hand tracking might be used in some of the physical UI you may have experimented with in the last lab, for instance in controlling a servo or rotary encoder.)
 
+**Testing out media pipe**
 
+Click to view video:
+
+[<img src="https://hackmd.io/_uploads/rkAA_LiGa.jpg">](https://youtu.be/1QZkdNUnvrc)
 
 #### Teachable Machines
 Google's [TeachableMachines](https://teachablemachine.withgoogle.com/train) is very useful for prototyping with the capabilities of machine learning. We are using [a python package](https://github.com/MeqdadDev/teachable-machine-lite) with tensorflow lite to simplify the deployment process.
