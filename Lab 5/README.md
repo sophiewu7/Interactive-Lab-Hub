@@ -110,6 +110,7 @@ Click to view video:
 
 [<img src="https://hackmd.io/_uploads/rkAA_LiGa.jpg">](https://youtu.be/1QZkdNUnvrc)
 
+
 #### Teachable Machines
 Google's [TeachableMachines](https://teachablemachine.withgoogle.com/train) is very useful for prototyping with the capabilities of machine learning. We are using [a python package](https://github.com/MeqdadDev/teachable-machine-lite) with tensorflow lite to simplify the deployment process.
 
@@ -147,8 +148,24 @@ In an earlier version of this class students experimented with foundational comp
 * This can be as simple as the boat detector showen in a previous lecture from Nikolas Matelaro.
 * Try out different interaction outputs and inputs.
 
-
 **\*\*\*Describe and detail the interaction, as well as your experimentation here.\*\*\***
+
+We want to use media pipe model to perform gesture detection to control mouse of the laptop.
+
+To do this, we need to install mouse package using `pip install mouse`.
+
+And we modified the `hand_pose.py` to test out different finger tips to move the mouse.
+
+Click the below image to see the video of an experiment interaction of using index finger tip to control the mouse.
+
+To move the mouse, we used `numpy` to convert the coordinate of the screen to coordinate of the web camera. And made the mouse to move based on the converted coordinate provided.
+
+
+[<img src="https://hackmd.io/_uploads/BJxFmDjM6.jpg">](https://youtu.be/mkKc_FbBc1o)
+
+
+By comparing with using different finger tips, we found that using the index finger is the most intuitive way of asking an user to use their hand gesture to move the mouse.
+
 
 ### Part C
 ### Test the interaction prototype
