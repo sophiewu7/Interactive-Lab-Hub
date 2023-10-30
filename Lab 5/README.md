@@ -104,6 +104,18 @@ Consider how you might use this position based approach to create an interaction
 
 (You might also consider how this notion of percentage control with hand tracking might be used in some of the physical UI you may have experimented with in the last lab, for instance in controlling a servo or rotary encoder.)
 
+Hand Tracking Interactions:
+Leveraging the intuitive nature of hand movements offers an immersive experience in controlling media. Adjusting volume can be as simple as moving one's hand up or down, while a pinch might serve to mute. For navigation, a hand swipe left or right can replace traditional scrolling, and pushing forward can act as a 'press' on digital buttons.
+
+Face Pose Interactions:
+The face, laden with expressiveness, can be a tool for interaction. Simple nods or shakes of the head can translate to affirmative or negative responses in apps. Blinking might replace a mouse click, enhancing accessibility. Even opening the mouth could be harnessed, perhaps activating voice assistants or initiating recordings.
+
+Body Pose Interactions:
+The full body as a control instrument opens avenues for immersive applications. Dance games can detect and respond to entire body movements. Meanwhile, the system could provide real-time feedback on one's posture during work. Gestures can also transition into the realm of home automation, like raising arms to illuminate a room or crossing them to secure doors.
+
+Physical UI Integration:
+Integrating pose controls with tangible interfaces bridges the digital and physical. Hand elevation might dictate a servo's angle, and twisting one's hand can mirror the action of a rotary encoder. Furthermore, the intuitive pinch action for percentage control can be repurposed, adjusting ambient lighting in a room, for instance.
+
 **Testing out media pipe**
 
 Click to view video:
@@ -132,6 +144,28 @@ Next train your own model. Visit [TeachableMachines](https://teachablemachine.wi
 ![Tensorflow Lite Download](Readme_files/tml_download-model.png)
 
 Include screenshots of your use of Teachable Machines, and write how you might use this to create your own classifier. Include what different affordances this method brings, compared to the OpenCV or MediaPipe options.
+
+![](https://hackmd.io/_uploads/HylsRFpG6.png)
+
+![](https://hackmd.io/_uploads/BkV30K6fp.png)
+
+![](https://hackmd.io/_uploads/B1Oh0K6GT.png)
+
+![](https://hackmd.io/_uploads/Bkj2RK6z6.png)
+
+![](https://hackmd.io/_uploads/H10nCFaMa.png)
+
+![](https://hackmd.io/_uploads/HJzp0YTzT.png)
+
+![](https://hackmd.io/_uploads/Sy46CtTza.png)
+
+Simplicity and Accessibility: Teachable Machines provides a user-friendly interface, making the training process more accessible to beginners. There's no need for extensive code to train and test the model.
+
+Real-time Feedback: The platform allows for instantaneous testing and tweaking, which can expedite the model refinement process.
+
+Customization: Teachable Machines allows you to customize your model to specific needs. While OpenCV and MediaPipe come with pre-trained models and predefined capabilities, Teachable Machines lets you define and train classes based on your unique requirements.
+
+Limitations: However, while Teachable Machines simplifies the training process, it might not offer the depth of customization or optimization available in more advanced tools like OpenCV or MediaPipe. For more complex or nuanced applications, one might need the extensive functionalities and controls that OpenCV and MediaPipe offer.
 
 #### (Optional) Legacy audio and computer vision observation approaches
 In an earlier version of this class students experimented with observing through audio cues. Find the material here:
@@ -173,16 +207,34 @@ By comparing with using different finger tips, we found that using the index fin
 Now flight test your interactive prototype and **note down your observations**:
 For example:
 1. When does it what it is supposed to do?
-1. When does it fail?
-1. When it fails, why does it fail?
-1. Based on the behavior you have seen, what other scenarios could cause problems?
+The system successfully detects and responds to hand gestures for mouse control.
+Moving the index finger in front of the camera effectively moves the mouse cursor on the laptop.
+
+2. When does it fail?
+The system may fail when the hand is not properly detected or when there is confusion in the hand gestures.
+Rapid or erratic movements can lead to inaccurate mouse control.
+The system might struggle if there are multiple hands in the frame, as it is currently designed to track one hand.
+3. When it fails, why does it fail?
+Failures are often related to the limitations of the hand pose detection model. If the model misinterprets the hand pose or fails to identify the fingertips accurately, it can lead to erratic mouse movements.
+4. Based on the behavior you have seen, what other scenarios could cause problems?
+Changes in lighting conditions might affect the hand pose detection.
+Occlusion of the hand or fingers, even partially, could lead to misinterpretation.
+Background clutter or other objects resembling hand gestures might cause confusion.
 
 **\*\*\*Think about someone using the system. Describe how you think this will work.\*\*\***
 1. Are they aware of the uncertainties in the system?
-1. How bad would they be impacted by a miss classification?
-1. How could change your interactive system to address this?
-1. Are there optimizations you can try to do on your sense-making algorithm.
+Users may not be fully aware of the system's limitations, especially regarding potential misinterpretations of hand gestures.
 
+2. How bad would they be impacted by a miss classification?
+A misclassification could result in unintended mouse movements, potentially causing the user to click on the wrong elements or activate unintended functions.
+3. How could change your interactive system to address this?
+- Provide visual or audio feedback when the system is uncertain or when it detects a potential misclassification.
+- Implement a calibration or initialization step to ensure the system understands the user's hand gestures accurately.
+6. Are there optimizations you can try to do on your sense-making algorithm.
+- Fine-tune the hand pose detection model to improve accuracy.
+- Implement more sophisticated filtering to reduce noise and erratic movements.
+- Include a brief tutorial or onboarding process to familiarize users with the system's capabilities and limitations.
+- Provide visual cues or instructions on how to perform gestures effectively.
 ### Part D
 ### Characterize your own Observant system
 
