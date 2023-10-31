@@ -207,26 +207,26 @@ By comparing with using different finger tips, we found that using the index fin
 Now flight test your interactive prototype and **note down your observations**:
 For example:
 1. When does it what it is supposed to do?
-The system successfully detects and responds to hand gestures for mouse control.
-Moving the index finger in front of the camera effectively moves the mouse cursor on the laptop.
+- The system successfully detects and responds to hand gestures for mouse control.
+- Moving the index finger in front of the camera effectively moves the mouse cursor on the laptop.
 
 2. When does it fail?
-The system may fail when the hand is not properly detected or when there is confusion in the hand gestures.
-Rapid or erratic movements can lead to inaccurate mouse control.
-The system might struggle if there are multiple hands in the frame, as it is currently designed to track one hand.
+- The system may fail when the hand is not properly detected or when there is confusion in the hand gestures.
+- Rapid or erratic movements can lead to inaccurate mouse control.
+- The system might struggle if there are multiple hands in the frame, as it is currently designed to track one hand.
 3. When it fails, why does it fail?
-Failures are often related to the limitations of the hand pose detection model. If the model misinterprets the hand pose or fails to identify the fingertips accurately, it can lead to erratic mouse movements.
+- Failures are often related to the limitations of the hand pose detection model. If the model misinterprets the hand pose or fails to identify the fingertips accurately, it can lead to erratic mouse movements.
 4. Based on the behavior you have seen, what other scenarios could cause problems?
-Changes in lighting conditions might affect the hand pose detection.
-Occlusion of the hand or fingers, even partially, could lead to misinterpretation.
-Background clutter or other objects resembling hand gestures might cause confusion.
+- Changes in lighting conditions might affect the hand pose detection.
+- Occlusion of the hand or fingers, even partially, could lead to misinterpretation.
+- Background clutter or other objects resembling hand gestures might cause confusion.
 
 **\*\*\*Think about someone using the system. Describe how you think this will work.\*\*\***
 1. Are they aware of the uncertainties in the system?
-Users may not be fully aware of the system's limitations, especially regarding potential misinterpretations of hand gestures.
+- Users may not be fully aware of the system's limitations, especially regarding potential misinterpretations of hand gestures.
 
 2. How bad would they be impacted by a miss classification?
-A misclassification could result in unintended mouse movements, potentially causing the user to click on the wrong elements or activate unintended functions.
+- A misclassification could result in unintended mouse movements, potentially causing the user to click on the wrong elements or activate unintended functions.
 3. How could change your interactive system to address this?
 - Provide visual or audio feedback when the system is uncertain or when it detects a potential misclassification.
 - Implement a calibration or initialization step to ensure the system understands the user's hand gestures accurately.
@@ -241,14 +241,34 @@ A misclassification could result in unintended mouse movements, potentially caus
 Now that you have experimented with one or more of these sense-making systems **characterize their behavior**.
 During the lecture, we mentioned questions to help characterize a material:
 * What can you use X for?
+    * Users can navigate menus, control playback, or play games using hand gestures. It is also possible for users to answer calls, take photos, or navigate screens using gestures. This could be very useful in consumer electronics, or navigating the infotainment system while driving. In addition, it can facilitate users to control the electronics when their hands are dirty (e.g. when cooking, or eating with hands), or when they do not have access to keyboard or mouse.
 * What is a good environment for X?
+    * Environment with adequate lighting
+    * Spacious where camera's field of view can capture the entire hand gesture.
 * What is a bad environment for X?
+    * Low light environment 
+    * Extreme light enviroment
+    * Environment with a lot of disturbance (e.g. a hand picture on the wall, hands waving around)
 * When will X break?
+    * Moving hand too fast that the camera fails to capture the motion, or when the lighting condition is not suitable for device to be fully functioning
+    * Too many hands appear in the same frame
+    * The hand is partially covered 
+    * The hand has other than five fingers
 * When it breaks how will X break?
+    * It will failed to recognize the tracking point of the fingers.
+    * The tracking points will be placed on incorrect finger(s).
 * What are other properties/behaviors of X?
+    * Provide tracking of a maximum of two hands, with the latter recognized one considered as the dominant hand
 * How does X feel?
+    * Responsive
+    * Smooth
+    * Can be further improved for frame rate
 
 **\*\*\*Include a short video demonstrating the answers to these questions.\*\*\***
+
+Click to view video:
+
+[<img src="https://hackmd.io/_uploads/Hky7-kRfp.png">](https://youtu.be/2V9fs32dfkc)
 
 ### Part 2.
 
