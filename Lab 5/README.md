@@ -194,7 +194,7 @@ Click the below image to see the video of an experiment interaction of using ind
 
 To move the mouse, we used `numpy` to convert the coordinate of the screen to coordinate of the web camera. And made the mouse to move based on the converted coordinate provided.
 
-
+Click to view video:
 [<img src="https://hackmd.io/_uploads/BJxFmDjM6.jpg">](https://youtu.be/mkKc_FbBc1o)
 
 
