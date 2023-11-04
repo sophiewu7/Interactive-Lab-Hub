@@ -47,7 +47,7 @@ cap.set(3, wCam)
 cap.set(4, hCam)
 pTime = 0
  
-detector = htm.handDetector(detectionCon=int(0.8))
+detector = htm.handDetector(detectionCon=int(0.5))
 
 ########## Colors ##################
 colors = [(0, 0, 0), (255, 255, 255), (255, 0, 0), (0, 255, 0), (0, 0, 255), (0, 255, 255), (255, 255, 0), (255, 0, 255), "Eraser"]
@@ -62,6 +62,16 @@ eraserthickness = 50
 eraser_mode = False
 ####################################
 
+font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 18)
+
+
+def draw_start():
+    image = Image.new("RGB", (height, width), (0,0,0))
+    draw = ImageDraw.Draw(image)
+    draw.text((60, 50), "Virtual Painter", font=font, fill="#FFFFFF")
+    disp.image(image, rotation)
+    
+    
 def fill_screen_with_color(color):
     image = Image.new("RGB", (height, width), color)
     disp.image(image, rotation)
@@ -120,7 +130,9 @@ def play_music(mp3_file):
     pygame.mixer.music.load(mp3_file)
     pygame.mixer.music.play()
 
-    
+
+draw_start()
+
 xp, yp = 0, 0
 
 while True:
