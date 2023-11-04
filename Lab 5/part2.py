@@ -80,7 +80,7 @@ def draw_color_palette(img):
     y_start = 120
 
     for i, item in enumerate(colors):
-        center = (color_radius + 10, y_start + i * (color_radius * 2 + color_gap))
+        center = (color_radius + 40, y_start + i * (color_radius * 2 + color_gap))
         if item != "Eraser":
             cv2.circle(img, center, color_radius, item, cv2.FILLED)
         else:
@@ -111,7 +111,7 @@ def find_selected_color(img, indexX, indexY):
     global selected_color, eraser_mode
     y_start = 120
     for i, item in enumerate(colors):
-        center = (color_radius + 10, y_start + i * (color_radius * 2 + color_gap))
+        center = (color_radius + 40, y_start + i * (color_radius * 2 + color_gap))
         distance_to_circle = math.hypot(indexX - center[0], indexY - center[1])
         threshold = 10
         if distance_to_circle - threshold < color_radius:
@@ -121,7 +121,7 @@ def find_selected_color(img, indexX, indexY):
                 selected_color = item
                 eraser_mode = False
                 fill_screen_with_color(colors_board[i])
-            cv2.circle(img, center, color_radius + 5, (255, 255, 255), 5)
+            cv2.circle(img, center, color_radius + 10, (255, 255, 255), 5)
             play_music(music[i])
             
 def play_music(mp3_file):
@@ -154,7 +154,7 @@ while True:
             index_finger_up = fingers[1]
             middle_finger_up = fingers[2]
             
-            if calculate_distance(x1, y1, x2, y2) < 60:
+            if calculate_distance(x1, y1, x2, y2) < 100:
                 fingers_together = True
             else:
                 fingers_together = False
