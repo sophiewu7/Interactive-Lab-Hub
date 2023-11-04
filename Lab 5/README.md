@@ -1,7 +1,9 @@
 # Observant Systems
 
 **NAMES OF COLLABORATORS HERE**
+
 Part 1: John Li (jl4239), Shiying Wu (sw2298), Mingze Gao (mg2454), Crystal Chong (cc2795), Qianxin(Carl) Gan (qg72), Mingzhe Sun (ms3636)
+
 Part 2: Shiying Wu (sw2298)
 
 
@@ -279,3 +281,29 @@ Following exploration and reflection from Part 1, finish building your interacti
 
 **\*\*\*Include a short video demonstrating the finished result.\*\*\***
 Need to install `pygame` to run the script. And run `sudo systemctl stop mini-screen.service`.
+
+Click to view video:
+
+[<img src="part2.png">](https://youtu.be/vz7dZtQT6Dw)
+
+For this part of the lab, I developed a virtual painter using media-pipe. 
+
+The virtual painter is composed of three parts:
+1. raspberry pi
+2. camera
+3. laptop
+
+The Raspberry Pi displays 'virtual painter' when the user invokes the program. It will display the current brush color corresponding to the user's selection.
+
+The camera is used for the meida-pipe to capture hand gestures as well as output audio.
+
+The laptop will display the media-pipe screen where on the left-hand side there is a vertical display of a color palette with an eraser.
+
+Three-hand gestures are designed:
+1. only index finger up: drawing mode
+2. index finger overlapped with middle finger: color selection mode
+3. fist: invoke eraser mode
+
+When the user selects a color, the corresponding audio will be played and the corresponding color will also be displayed on the Raspberry Pi's led screen.
+
+The 'virtual painter' is not as playable as I expected due to the fps being around 3 to 5.
