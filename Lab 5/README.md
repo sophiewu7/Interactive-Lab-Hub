@@ -1,7 +1,8 @@
 # Observant Systems
 
 **NAMES OF COLLABORATORS HERE**
-John Li (jl4239), Shiying Wu (sw2298), Mingze Gao (mg2454), Crystal Chong (cc2795), Qianxin(Carl) Gan (qg72), Mingzhe Sun (ms3636)
+Part 1: John Li (jl4239), Shiying Wu (sw2298), Mingze Gao (mg2454), Crystal Chong (cc2795), Qianxin(Carl) Gan (qg72), Mingzhe Sun (ms3636)
+Part 2: Shiying Wu (sw2298)
 
 
 For lab this week, we focus on creating interactive systems that can detect and respond to events or stimuli in the environment of the Pi, like the Boat Detector we mentioned in lecture. 
@@ -271,6 +272,8 @@ Click to view video:
 [<img src="https://hackmd.io/_uploads/Hky7-kRfp.png">](https://youtu.be/2V9fs32dfkc)
 
 ### Part 2.
+
+Part 2: Shiying Wu (sw2298)
 
 Following exploration and reflection from Part 1, finish building your interactive system, and demonstrate it in use with a video.
 
