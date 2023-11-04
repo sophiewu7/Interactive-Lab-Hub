@@ -5,7 +5,7 @@ import HandTrackingModule as htm
 import math
 from ctypes import cast, POINTER
 import subprocess
-import mouse
+import pygame
 
 '''
 Reference: https://github.com/ysthehurricane/Virtual-Drawing
@@ -25,8 +25,9 @@ detector = htm.handDetector(detectionCon=int(0.8))
 
 ########## Colors ##################
 colors = [(0, 0, 0), (255, 255, 255), (255, 0, 0), (0, 255, 0), (0, 0, 255), (0, 255, 255), (255, 255, 0), (255, 0, 255), "Eraser"]
-color_radius = 30
-color_gap = 40
+music = ['black.mp3', 'white.mp3', 'blue.mp3', 'green.mp3', 'red.mp3', 'yellow.mp3', 'cyan.mp3', 'pink.mp3', 'eraser.mp3']
+color_radius = 40
+color_gap = 30
 selected_color = (0, 0, 0)
 canvas = np.zeros((hCam, wCam, 3), np.uint8)
 brushthickness = 15
@@ -80,7 +81,15 @@ def find_selected_color(img, indexX, indexY):
                 selected_color = item
                 eraser_mode = False
             cv2.circle(img, center, color_radius + 5, (255, 255, 255), 5)
+            play_music(music[i])
             
+def play_music(mp3_file):
+    if not pygame.mixer.get_init():
+        pygame.mixer.init()
+    pygame.mixer.music.load(mp3_file)
+    pygame.mixer.music.play()
+
+    
 xp, yp = 0, 0
 
 while True:
@@ -140,6 +149,6 @@ while True:
     cv2.imshow("Img", img)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-
+    
 cap.release()
 cv2.destroyAllWindows()
