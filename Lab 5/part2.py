@@ -51,7 +51,7 @@ detector = htm.handDetector(detectionCon=int(0.8))
 
 ########## Colors ##################
 colors = [(0, 0, 0), (255, 255, 255), (255, 0, 0), (0, 255, 0), (0, 0, 255), (0, 255, 255), (255, 255, 0), (255, 0, 255), "Eraser"]
-colors_board = [(0, 0, 0), (255, 255, 255), (0, 0, 255), (0, 225, 0), (255, 0, 0), (255, 255, 0), (0, 255, 255), (255, 0, 255), "Eraser"]
+colors_board = [(0, 0, 0), (255, 255, 255), (0, 0, 255), (0, 175, 0), (255, 0, 0), (255, 255, 0), (0, 255, 255), (255, 0, 255), "Eraser"]
 music = ['black.mp3', 'white.mp3', 'blue.mp3', 'green.mp3', 'red.mp3', 'yellow.mp3', 'cyan.mp3', 'pink.mp3', 'eraser.mp3']
 color_radius = 40
 color_gap = 30
