@@ -6,10 +6,36 @@ import math
 from ctypes import cast, POINTER
 import subprocess
 import pygame
+import digitalio
+import board
+from PIL import Image, ImageDraw, ImageFont
+import adafruit_rgb_display.st7789 as st7789
 
 '''
 Reference: https://github.com/ysthehurricane/Virtual-Drawing
 '''
+
+cs_pin = digitalio.DigitalInOut(board.CE0)
+dc_pin = digitalio.DigitalInOut(board.D25)
+reset_pin = None
+BAUDRATE = 64000000
+
+spi = board.SPI()
+disp = st7789.ST7789(
+    spi,
+    cs=cs_pin,
+    dc=dc_pin,
+    rst=reset_pin,
+    baudrate=BAUDRATE,
+    width=135,
+    height=240,
+    x_offset=53,
+    y_offset=40,
+)
+
+rotation = 90
+width=135
+height=240
 
 ################################
 wCam, hCam = 1920, 1080
@@ -25,6 +51,7 @@ detector = htm.handDetector(detectionCon=int(0.8))
 
 ########## Colors ##################
 colors = [(0, 0, 0), (255, 255, 255), (255, 0, 0), (0, 255, 0), (0, 0, 255), (0, 255, 255), (255, 255, 0), (255, 0, 255), "Eraser"]
+colors_board = [(0, 0, 0), (255, 255, 255), (0, 0, 255), (0, 225, 0), (255, 0, 0), (255, 255, 0), (0, 255, 255), (255, 0, 255), "Eraser"]
 music = ['black.mp3', 'white.mp3', 'blue.mp3', 'green.mp3', 'red.mp3', 'yellow.mp3', 'cyan.mp3', 'pink.mp3', 'eraser.mp3']
 color_radius = 40
 color_gap = 30
@@ -35,6 +62,9 @@ eraserthickness = 50
 eraser_mode = False
 ####################################
 
+def fill_screen_with_color(color):
+    image = Image.new("RGB", (height, width), color)
+    disp.image(image, rotation)
 
 def draw_color_palette(img):
     y_start = 120
@@ -80,6 +110,7 @@ def find_selected_color(img, indexX, indexY):
             else:
                 selected_color = item
                 eraser_mode = False
+                fill_screen_with_color(colors_board[i])
             cv2.circle(img, center, color_radius + 5, (255, 255, 255), 5)
             play_music(music[i])
             
