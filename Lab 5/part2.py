@@ -142,7 +142,7 @@ while True:
             index_finger_up = fingers[1]
             middle_finger_up = fingers[2]
             
-            if calculate_distance(x1, y1, x2, y2) < 40:
+            if calculate_distance(x1, y1, x2, y2) < 60:
                 fingers_together = True
             else:
                 fingers_together = False
