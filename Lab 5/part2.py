@@ -31,6 +31,7 @@ selected_color = (0, 0, 0)
 canvas = np.zeros((hCam, wCam, 3), np.uint8)
 brushthickness = 15
 eraserthickness = 50
+eraser_mode = False
 ####################################
 
 
@@ -61,15 +62,23 @@ def fingersUp(lmList):
         return [False, False, False, False, False]
     
     
+def isFist(lmList):
+    return all(lmList[i][2] > lmList[i - 2][2] for i in range(8, 21, 4))
+
+
 def find_selected_color(img, indexX, indexY):
-    global selected_color
+    global selected_color, eraser_mode
     y_start = 120
     for i, item in enumerate(colors):
         center = (color_radius + 10, y_start + i * (color_radius * 2 + color_gap))
         distance_to_circle = math.hypot(indexX - center[0], indexY - center[1])
         threshold = 10
         if distance_to_circle - threshold < color_radius:
-            selected_color = item
+            if item == "Eraser":
+                eraser_mode = True
+            else:
+                selected_color = item
+                eraser_mode = False
             cv2.circle(img, center, color_radius + 5, (255, 255, 255), 5)
             
 xp, yp = 0, 0
@@ -86,19 +95,34 @@ while True:
         x1, y1 = lmList[8][1], lmList[8][2] 
         x2, y2 = lmList[12][1], lmList[12][2]
         
-        fingers = fingersUp(lmList)
-        index_finger_up = fingers[1] and not any(fingers[2:])
-        
-        if index_finger_up:
-            if xp == 0 and yp == 0:
-                xp, yp = x1, y1
-                
-            find_selected_color(img, x1, y1)
-            cv2.line(canvas, (xp, yp), (x1, y1), selected_color, brushthickness)
-            xp, yp = x1, y1
+        if isFist(lmList):
+            eraser_mode = True
         else:
-            xp, yp = 0, 0
-    
+            fingers = fingersUp(lmList)
+            index_finger_up = fingers[1]
+            middle_finger_up = fingers[2]
+            
+            if calculate_distance(x1, y1, x2, y2) < 40:
+                fingers_together = True
+            else:
+                fingers_together = False
+
+            if fingers_together:
+                find_selected_color(img, x1, y1)
+                xp, yp = 0, 0 
+
+            elif index_finger_up and not middle_finger_up:
+                if xp == 0 and yp == 0:
+                    xp, yp = x1, y1
+
+                if eraser_mode:
+                    cv2.line(canvas, (xp, yp), (x1, y1), (0, 0, 0), eraserthickness)
+                else:
+                    cv2.line(canvas, (xp, yp), (x1, y1), selected_color, brushthickness)
+                xp, yp = x1, y1
+            else:
+                xp, yp = 0, 0
+        
     # Overlay the canvas on the image
     imgGray = cv2.cvtColor(canvas, cv2.COLOR_BGR2GRAY)
     _, imgInv = cv2.threshold(imgGray, 50, 255, cv2.THRESH_BINARY_INV)
