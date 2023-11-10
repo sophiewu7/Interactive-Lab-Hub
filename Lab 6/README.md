@@ -2,6 +2,8 @@
 
 **NAMES OF COLLABORATORS HERE**
 
+[Sophie Wu(NetID: sw2298)](https://github.com/sophiewu7/Interactive-Lab-Hub/tree/Fall2023/Lab%206), [Annetta Zheng(jz2272)](https://github.com/annetta-zheng/Interactive-Lab-Hub/tree/Fall2023/Lab%206)
+
 ## Prep
 
 1. Pull the new changes from the class interactive-lab-hub. (You should be familiar with this already!)
@@ -96,6 +98,16 @@ Once connected, you should be able to see all the messages under the IDD topic. 
 
 **\*\*\*Consider how you might use this messaging system on interactive devices, and draw/write down 5 ideas here.\*\*\***
 
+![image](https://hackmd.io/_uploads/BkjlXQomp.png)
+
+![image](https://hackmd.io/_uploads/HJgjXXjQp.png)
+
+![image](https://hackmd.io/_uploads/By4hHmsma.png)
+
+![IMG_6138.jpg](https://hackmd.io/_uploads/SySD8Xi7T.jpg)
+
+![IMG_6139.jpg](https://hackmd.io/_uploads/rk_m_Xo7a.jpg)
+
 ### Part C
 ### Streaming a Sensor
 
@@ -110,6 +122,7 @@ Plug in the capacitive sensor board with the Qwiic connector. Use the alligator 
 <img src="https://media.discordapp.net/attachments/679721816318803975/823299613812719666/PXL_20210321_205742253.jpg" height="150">
 </p>
 
+
  ```
  (circuitpython) pi@raspberrypi:~ Interactive-Lab-Hub/Lab 6 $ python distributed_twizzlers_sender.py
  ...
@@ -117,7 +130,28 @@ Plug in the capacitive sensor board with the Qwiic connector. Use the alligator 
 
 **\*\*\*Include a picture of your setup here: what did you see on MQTT Explorer?\*\*\***
 
+
+![lab6-partc](https://hackmd.io/_uploads/ByHcw0c7p.jpg)
+
+
+![image](https://hackmd.io/_uploads/Hk0ivAqQp.png)
+
+
+![447abb44e454cfdfded53f3f03547ff](https://hackmd.io/_uploads/BydhDRcm6.png)
+
+
 **\*\*\*Pick another part in your kit and try to implement the data streaming with it.\*\*\***
+
+Script located at `distributed_keyborard_sender.py`.
+
+
+![Image_20231109170612](https://hackmd.io/_uploads/ryKWOA9Qa.jpg)
+
+
+![a4c8c67029aa2874d4e6de211bc0049](https://hackmd.io/_uploads/Bk8CPCc7T.png)
+
+
+![015b25d7199db2a264b97b2239ebf89](https://hackmd.io/_uploads/ry1AvRqQ6.png)
 
 
 ### Part D
@@ -148,19 +182,73 @@ By running the script, wou will find the two squares on the display. Half is sho
 
 **\*\*\*Can you set up the script that can read the color anyone else publish and display it on your screen?\*\*\***
 
+Please refer to `msgcolor.py` for the code.
+
+Please see the videos: `color_change_part1` and `color_change_part2` for the demo.
+
+Video Folder: https://drive.google.com/drive/u/2/folders/1hbvnUMJ-cx8DhAtAyXRFDosOQR1tiwWC
+
+<!-- <img src="./imgs/partc_img0.jpg" width="200"/>
+<img src="./imgs/partc_img1.jpg" width="200"/>
+<img src="./imgs/partc_img2.jpg" width="200"/>
+<img src="./imgs/partc_img3.jpg" width="200"/>
+<img src="./imgs/partc_img4.jpg" width="200"/> -->
+![partc_img0.jpg](https://hackmd.io/_uploads/r1vtPJomp.jpg =x200) ![partc_img1.jpg](https://hackmd.io/_uploads/BkHFPysXp.jpg =x200)
+![partc_img2.jpg](https://hackmd.io/_uploads/rJKdvyi76.jpg =x200) ![partc_img3.jpg](https://hackmd.io/_uploads/B1IuP1imp.jpg =x200) ![partc_img4.jpg](https://hackmd.io/_uploads/BJDDvJiX6.jpg =x200)
+
+In the demo, we showed the process of changing the starter color: **light pink** with the published rgba messages with "GREEN" and "BLUE". 
+
+The **light pink** color is gradually mixed into **pink** with "GREEN", then to **light purple** with "BLUE" messages.
+
+
 
 ### Part E
 ### Make it your own
 
 Find at least one class (more are okay) partner, and design a distributed application together based on the exercise we asked you to do in this lab.
 
-**\*\*\*1. Explain your design\*\*\*** For example, if you made a remote controlled banana piano, explain why anyone would want such a thing.
+**\*\*\*1. Explain your design\*\*\*** 
+
+Our design is a remote tarot card reading application. 
+
+It allows users to have their fortunes told in various aspects of life, such as career, love, or family, without being in the same physical location as the tarot reader. 
+
+The interaction is conducted over a digital platform using MQTT protocol to communicate between two users: the player and the tarot reader. 
+
+The player/user can pick cards virtually, and the tarot reader interprets each card by sending audio back to the user. 
+
+This system can cater to people interested in tarot readings but are unable to visit a reader in person due to distance, time constraints, or current health guidelines.
 
 **\*\*\*2. Diagram the architecture of the system.\*\*\*** Be clear to document where input, output and computation occur, and label all parts and connections. For example, where is the banana, who is the banana player, where does the sound get played, and who is listening to the banana music?
+![IMG_6134.jpg](https://hackmd.io/_uploads/HJ16eXoQ6.jpg)
 
-**\*\*\*3. Build a working prototype of the system.\*\*\*** Do think about the user interface: if someone encountered these bananas somewhere in the wild, would they know how to interact with them? Should they know what to expect?
 
-**\*\*\*4. Document the working prototype in use.\*\*\*** It may be helpful to record a Zoom session where you should the input in one location clearly causing response in another location.
+![image](https://hackmd.io/_uploads/rJqzymoQT.png)
+
+
+![image](https://hackmd.io/_uploads/HJ4SeQsQT.png)
+
+
+**\*\*\*3. Build a working prototype of the system.\*\*\*** 
+
+We build interface so that the user is very clear about how to use the device.
+
+Player Interaction Parts:
+![IMG_6128.JPG](https://hackmd.io/_uploads/rkO-G7sXa.jpg)
+![IMG_6129.JPG](https://hackmd.io/_uploads/S1bLG7o7T.jpg)
+
+Tarot Reader Interation Parts:
+Please refer to `tarot_reader.py` for code of the reader side.
+![IMG_6130.jpg](https://hackmd.io/_uploads/ryhqfmjXa.jpg)
+
+
+**\*\*\*4. Document the working prototype in use.\*\*\*** 
+
+
+Click to view the video:
+
+[<img src="https://hackmd.io/_uploads/B1nNufsmT.jpg">](https://youtu.be/p0TKXzx_ljs)
+
 
 <!--**\*\*\*5. BONUS (Wendy didn't approve this so you should probably ignore it)\*\*\*** get the whole class to run your code and make your distributed system BIGGER.-->
 
