@@ -58,33 +58,31 @@ def set_neopixel_color(color):
         pixels.show()
         time.sleep(0.01)
 
-# Define a threshold for the joystick "pull" detection
-PULL_THRESHOLD = 200
-
 def runExample():
     if not myJoystick.connected:
-        print("The Qwiic Joystick device isn't connected to the system. Please check your connection", \
-            file=sys.stderr)
+        print("The Qwiic Joystick device isn't connected to the system. Please check your connection", file=sys.stderr)
         return
 
     myJoystick.begin()
     print("Initialized. Firmware Version: %s" % myJoystick.version)
 
-    pull = False
-    resting_position_y = 512
+    resting_position_x, resting_position_y = 512, 512
+    pull_threshold = 100  # Threshold to determine a "pull"
+    last_color = (250, 188, 2)  # Initialize with a default color
 
     while True:
-        vertical_position = myJoystick.vertical
-        if abs(vertical_position - resting_position_y) > PULL_THRESHOLD and not pull:
-            x_normalized = (myJoystick.horizontal - 512) / 512.0
-            y_normalized = (vertical_position - 512) / 512.0
+        x_position = myJoystick.horizontal
+        y_position = myJoystick.vertical
+        x_normalized = (x_position - resting_position_x) / 512.0
+        y_normalized = (y_position - resting_position_y) / 512.0
+
+        # Check if the joystick is pulled far enough in any direction
+        if abs(x_normalized) > pull_threshold / 512.0 or abs(y_normalized) > pull_threshold / 512.0:
             angle = (math.degrees(math.atan2(y_normalized, x_normalized)) + 360) % 360
-            selected_color = joystick_to_color(angle)
-            pull = True
-            set_neopixel_color(selected_color)
-            print(f"Joystick Angle: {angle}, Color selected: RGB{selected_color}")
-        elif abs(vertical_position - resting_position_y) <= PULL_THRESHOLD:
-            pull = False
+            last_color = joystick_to_color(angle)  # Update color only on pull
+            print(f"Joystick Angle: {angle}, Color selected: RGB{last_color}")
+
+        set_neopixel_color(last_color)  # Use the last selected color
         time.sleep(0.01)
 
 if __name__ == '__main__':
