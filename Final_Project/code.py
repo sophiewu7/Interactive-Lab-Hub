@@ -78,7 +78,7 @@ while True:
     color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
     # Random lighting pattern
-    pattern = random.choice(["chase", "solid", "rainbow", "sinelon", "confetti", "bpm", "jungle"])
+    pattern = random.choice(["chase", "solid","sinelon", "confetti", "bpm", "jungle"])
 
     if pattern == "chase":
         chase(color, 0.1)
