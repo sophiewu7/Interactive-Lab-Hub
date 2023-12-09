@@ -5,135 +5,116 @@
 
 ## Project Plan
 
+### Big Idea
 
-1. Project plan: Big idea, timeline, parts needed, fall-back plan. (Can be same as previous turn-in, but updated if you changed your plan)
+LuminArt is a captivating and interactive art installation designed to enhance any space in your home. This unique piece consists of a multi-layered acrylic canvas, beautifully illuminated by interactive LED lights. It features six distinct acrylic layers, each encased in responsive LED lighting. Equipped with a joystick and a rotor, these components collaborate to seamlessly shift the layers, producing a dynamic, evolving visual spectacle as people engage with the artwork. LuminArt offers a personalized and immersive artistic experience, transforming ordinary spaces into extraordinary environments.
 
-2. Functioning project: The finished project should be a device, system, interface, etc. that people can interact with.
+The installation showcases the possibilities of merging traditional artistic mediums with cutting-edge technology. It serves as an example of how innovation can enhance and redefine our understanding of art.
 
-3. Documentation of design process
+### Timeline
 
-4. Archive of all code, design patterns, etc. used in the final design. (As with labs, the standard should be that the documentation would allow you to recreate your project if you woke up with amnesia.)
+**Week 1:** Conceptualization and design planning. Acquire materials (acrylic boards, LED strips). Idea Pitched.
+**Week 2:** Build the physical prototype and test basic functionality. 
+**Week 3:** Use laser cutting to create designs on layers of the acrylic boards and refine the LED circuit based on test results. Functional checkoff.
+**Week 4:** Final assembly, documentation, and video creation.
 
-5. Video of someone using your project
-6. 
+### Parts Needed
 
-
-Big Idea:  An interactive art installation, LuminArt features a multi-tiered acrylic canvas that transforms with the viewers' movements. It's composed of 15 acrylic layers, each framed by responsive LED lighting, and driven by motion sensors and servo motors. These elements work together to shift the layers, creating a live, evolving visual as people interact with the piece.
-
-Specific Application:  The installation showcases the possibilities of merging traditional artistic mediums with cutting-edge technology. It serves as an example of how innovation can enhance and redefine our understanding of art.
-
-Project Plan Highlights: Nov 14: Idea pitch. Nov 20: Design and gather materials. Nov 27: Build and test the prototype. Dec 4: Finish painting and tweak the LEDs.
-
-Parts and resources needed: Raspberry Pi, 15+ acrylic boards, LED strip, paints, power supply,
-sensors, wires, mounting materials.
-
-Expected Challenges: LED interaction would not be as precise as we expected.
-
-Contribution Overview: Split evenly. Do every part together in person.
-
-Feedback Sought: How to make the interaction intuitive to user/
+- [Raspberry Pi 4](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) (including SD card, power supply)
+- Acrylic Sheet (18" x 24", 3mm thick)
+- Wooden Board (18" x 24", 6mm thick)
+- [SparkFun Qwiic Joystick](https://www.sparkfun.com/products/15168)
+- [Adafruit I2C Stemma QT Rotary Encoder](https://www.adafruit.com/product/4991#technical-details)
+- [Adafruit NeoPixel Digital RGB LED Strip](https://www.adafruit.com/product/1138)
+- [I2C to NeoPixel Driver](https://learn.adafruit.com/adafruit-neodriver-i2c-to-neopixel-driver?view=all)
+- [Female DC Power adapter](https://www.adafruit.com/product/368?gad_source=1&gclid=CjwKCAiAvdCrBhBREiwAX6-6UnZKKB3bTjMZxsHz2mxgq-S5J0xOsKOXSIHElIoT9Pwy33I_f0OquBoCasAQAvD_BwE)
 
 
+### Fall-back plan
 
-**Idea:** LuminArt Interactive Painting
-
-Big idea, timeline, parts needed, fall-back plan.
-
-* Outline:
-    The LuminArt Interactive Canvas is a multi-layered acrylic painting installation with integrated LED lighting, designed to respond to audience body movement. 
+Start with 1 layer where we would try out the visibility of LED light on the design by using laser cutting.
     
-    The main components include a 15-layer acrylic painting, an LED strip surrounding the painting, and motion sensors for interaction.
+In case of technical difficulties or budget constraints, simplify the design while maintaining the core interactive concept.
+    
+## Functioning Project:
 
-* Parts Needed:
-    Raspberry Pi (including SD card, power supply)
-    Acrylic Boards (15+)
-    LED Strip 
-    Acrylic Paints
-    Power supply
-    Motion sensors (infrared or camera-based) or camera
-    Wires and electronic components for connections
-    Structural materials for mounting (plywood, brackets, etc.)
+![cd8ee8c7e9d88f7f1fa467944c55792](https://hackmd.io/_uploads/ByXVXDGUa.jpg)
 
-* Prototype and Test:
-    The prototype will consist of a sturdy frame to hold the background and multiple layer of paintings. 
-    
-    The mechanism for switching layers will be controlled by motion sensors. As the audience moves, the sensors will detect the motion, initiating the switch between different views on the painting. 
-    
-    The prototype will undergo testing to ensure smooth transitions, accurate motion detection, and durability. Test scenarios will involve different audience sizes and movement patterns to simulate real-world interactions.
-    
-* Project Plan:
-    * **Timeline:**
-    Week 1: Conceptualization and design planning. Acquire materials (acrylic boards, LED strips, motion sensors).
-    Week 2: Build the physical prototype and test basic functionality. 
-    Week 3: Paint the rest of layers of the acrylic boards and refine the LED circuit based on test results.
-    Week 4: Final assembly, documentation, and video creation.
-   
-* Fall-Back Plan: 
+![1520ddae79f31bcfc300a8b73854004](https://hackmd.io/_uploads/Sk18mvzLa.jpg)
 
-    Start with 1 layer where we would confirm the feasibility of servo interaction with movements.
-    
-    In case of technical difficulties or budget constraints, simplify the design while maintaining the core interactive concept.
-    
-**Appendix:**
+![543449697fef13ea0e346096992f1d5](https://hackmd.io/_uploads/SJ0vmvMUp.jpg)
 
-![Screenshot 2023-11-13 at 23.15.16](https://hackmd.io/_uploads/Hk0AN_l46.jpg)
-http://www.publicspacedesign.com/article/741
+The user can interact with the device by the following ways:
+1. Turn the joystick to change the LED light to the desired color
+2. Press the joystic (acts as a button) to swicth between light patterns
+3. Turn the rotary encoder to change the speed of light movement
+
+Detail interaction can be viewed through the [video](https://youtu.be/3wqJpvPEugU) in the Video section.
+
+## Design Process
+
+### Phase 1 - Prototyping
+
+We started our project by doing laser cut training at the Maker Lab for week 1.
+
+We first try out the feasibility of the output of our design: using lights to show only one layer of acrylic layers.
+
+We first cut out 6 acrylic layers with a geometry design we found on the internet, each has a size of 2 inches * 2 inches.
+
+![image](https://hackmd.io/_uploads/B1-64vMI6.png)
+
+![image](https://hackmd.io/_uploads/BkopVvzLp.png)
+
+By using the flashlight of our phone, we confirmed the feasibility of our project and decided to move forward with the original idea.
+
+Our next step was figuring out how to use the LED light strip. We sought help from Hauk and got the light strip to work in week 2.
+
+We also use wooden board to create a holder for the 2 inches * 2 inches prototype in week 2.
+
+By having the output working, in week 3, the team worked on figuring out how to add interaction to our project and what should we do for the final design (i. e., what would be the size of LuminArt and what would be our theme, how can we design our holder box).
+
+The team met up to discuss these detail and we agreed to move forward with:
+- Each layer has a size of 3 inches by 4 inches with a 2 inches wide portion at the botton where we can use to clip it on to our box
+- We will have the theme of sea life / marine life
+- The user can interact with the device in the following ways:
+    - change pattern
+    - change color
+    - change speed
+
+Then we started to implement each part.
+
+We started by finding vectors of sea life on the internet, designed them onto the 6 layers of acrylic. And cut them out using laser cutting at the Maker Lab.
+
+Then we designed a box using boxes.py template with Adobe Illustrator. Because the template didn't match we wanted so we first use paper to cut out the design to make sure we have all the right meaurement before we cut on the actual wooden board.
+
+With all the parts maded, we decided to use 4 LED pixel per row. We counted the index of these LEDs and started our coding process.
+
+### Codes
+
+See `final_project.py` for details.
+Step 1: Have control over LED lights
+Step 2: Have the joystick connected and implement color change feature
+Step 3: Have the rotary encoder connected to change the spped of light
+Step 4: Design light patterns and use joystick as a button to switch the pattern.
+
+
+## Video
+
+[Video on YouTube](https://www.youtube.com/watch?v=3wqJpvPEugU)
+
+[![6d4a68c4601e7bae80bc19661c42aac](https://hackmd.io/_uploads/HyU_dvGIa.jpg)](https://www.youtube.com/watch?v=3wqJpvPEugU)
+
+
+## Work Distribution
+Evenly divided between the two members.
+    
+## Appendix
+
 INSPIRATION
-水墨：http://www.publicspacedesign.com/article/601
-植物：http://www.publicspacedesign.com/article/621
-线条：http://www.publicspacedesign.com/article/619
-点：http://www.publicspacedesign.com/article/509
-## Outline
-Using the tools and techniques you learned in this class, design, prototype and test an interactive device.
+![Screenshot 2023-11-13 at 23.15.16](https://hackmd.io/_uploads/Hk0AN_l46.jpg)
 
-Project plan - November 14
+- http://www.publicspacedesign.com/article/741
+- http://www.publicspacedesign.com/article/601
+- http://www.publicspacedesign.com/article/621
+- http://www.publicspacedesign.com/article/619
 
-Peer feedback on Project plans: November 21
-
-Functional check-off - November 28 & 30
-
-Final Project Presentations - December 5 & 7
-
-Write-up and documentation due - December 14
-
-## Objective
-
-The goal of this final project is for you to have a fully functioning and well-designed interactive device of your own design.
- 
-## Description
-Your project is to design and build an interactive device to suit a specific application of your choosing, and *test the interaction with people*. 
-
-## Deliverables
-
-1. Project plan: Big idea, timeline, parts needed, fall-back plan.
-    
-    
-
-2. Functioning project: The finished project should be a device, system, interface, etc. that people can interact with.
-
-3. Documentation of design process
-4. Archive of all code, design patterns, etc. used in the final design. (As with labs, the standard should be that the documentation would allow you to recreate your project if you woke up with amnesia.)
-5. Video of someone using your project
-6. Reflections on process (What have you learned or wish you knew at the start?)
-
-7. Group work distribution questionnaire
-
-## Change of Design
-
-It is fine to change your project goals, but please resubmit the project plan for the new design when you do that.
-
-## Grading rubric
-
-20% Project planning: Allocation of needed resources (time, people, materials, facilities) anticipated well.
-20% Design of project: Interaction, hardware and software aspects of projects planned well.
-20% Testing of project: Functional or wizarded system tested with people
-20% Prototype functionality: System capable of interaction, either through autonomous or wizarded mechanisms
-20% Project documentation: Text, video, and photo of project illustratign capability and documenting plans and process
-
-## Teams
-
-You can and are not required to work in teams. Be clear in documentation who contributed what. The total project contributions should reflect the number of people on the project.
-
-## Examples
-
-[Here is a list of good final projects from previous classes.](https://github.com/FAR-Lab/Developing-and-Designing-Interactive-Devices/wiki/Previous-Final-Projects)
