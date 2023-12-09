@@ -10,7 +10,7 @@ import random
 # Configuration constants
 RESTING_POSITION_X, RESTING_POSITION_Y = 512, 512
 PULL_THRESHOLD = 100
-INITIAL_SPEED = 0.5
+SPEED = 0.5
 SPEED_DELTA_MULTIPLIER = 0.02
 SPEED_MIN, SPEED_MAX = 0.01, 1
 COLOR = (250, 188, 2)
@@ -80,6 +80,7 @@ class NeoPixelPatterns:
         
     def switch_pattern(self):
         self.desired_pattern = (self.desired_pattern + 1) % len(self.patterns)
+        self.current_pattern = self.desired_pattern
 
     def run_current_pattern(self, start_pos):
         return self.patterns[self.current_pattern](start_pos)
@@ -100,23 +101,23 @@ class NeoPixelPatterns:
                 COLOR = new_color
                 
     def adjust_speed(self):
-        global INITIAL_SPEED
+        global SPEED
         encoder_position = -encoder.position
-        INITIAL_SPEED = get_speed_adjustment(encoder_position, self.last_position)
+        SPEED = get_speed_adjustment(encoder_position, self.last_position)
         self.last_position = encoder_position
-        return INITIAL_SPEED
+        return SPEED
     
     def pattern_normal(self, start_pos=0):
-        global COLOR, INITIAL_SPEED
+        global COLOR, SPEED
         for row_index, row in enumerate(self.lights):
             if row_index < start_pos:
                 continue
-            INITIAL_SPEED = self.adjust_speed()
+            SPEED = self.adjust_speed()
             for i in row:
                 self.check_joystick_for_color()
                 pixels[i] = COLOR
             pixels.show()
-            time.sleep(INITIAL_SPEED)
+            time.sleep(SPEED)
             if self.joystick.button == 0:
                 for i in row:
                     pixels[i] = 0
@@ -130,18 +131,18 @@ class NeoPixelPatterns:
         return -1
 
     def pattern_reverse(self, start_pos=0):
-        global COLOR, INITIAL_SPEED
+        global COLOR, SPEED
         num_rows = len(self.lights)
         for row_index in range(num_rows - 1, -1, -1):
             if num_rows - 1 - row_index < start_pos:
                 continue
             row = self.lights[row_index]
-            INITIAL_SPEED = self.adjust_speed()
+            SPEED = self.adjust_speed()
             for i in reversed(row):
                 self.check_joystick_for_color()
                 pixels[i] = COLOR
             pixels.show()
-            time.sleep(INITIAL_SPEED)
+            time.sleep(SPEED)
             if self.joystick.button == 0:
                 for i in reversed(row):
                     pixels[i] = 0
@@ -155,22 +156,23 @@ class NeoPixelPatterns:
         return -1
 
 
-    def pattern_random_flicker(self, speed, start_pos=0):
+    def pattern_random_flicker(self, start_pos=0):
         global COLOR
         num_pixels = len(self.lights) * len(self.lights[0])
+        SPEED = self.adjust_speed()
         for _ in range(num_pixels):
             row = random.choice(self.lights)
             pixel = random.choice(row)
             original_color = pixels[pixel]
             pixels[pixel] = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))  # Set to a random color
             pixels.show()
-            time.sleep(speed)
+            time.sleep(SPEED)
             if self.joystick.button == 0:
                 pixels[pixel] = original_color
                 pixels.show()
                 self.current_pattern = self.desired_pattern
                 return 0
-            speed = self.adjust_speed()
+            SPEED = self.adjust_speed()
             pixels[pixel] = original_color
         pixels.show()
         return -1
@@ -183,9 +185,9 @@ def joystick_to_color(angle):
 
 def get_speed_adjustment(encoder_position, last_position):
     if last_position is None:
-        return INITIAL_SPEED
+        return SPEED
     delta = encoder_position - last_position
-    new_speed = INITIAL_SPEED + delta * SPEED_DELTA_MULTIPLIER
+    new_speed = SPEED + delta * SPEED_DELTA_MULTIPLIER
     new_speed = max(SPEED_MIN, min(new_speed, SPEED_MAX))
     return new_speed
 
