@@ -5,6 +5,7 @@ from adafruit_seesaw import seesaw, neopixel, rotaryio
 import qwiic_joystick
 import math
 import sys
+import random
 
 # Configuration constants
 RESTING_POSITION_X, RESTING_POSITION_Y = 512, 512
@@ -75,13 +76,13 @@ class NeoPixelPatterns:
         self.current_pattern = 0
         self.desired_pattern = 0
         self.last_position = None
-        self.patterns = [self.pattern_normal, self.pattern_reverse]
-
+        self.patterns = [self.pattern_normal, self.pattern_reverse, self.pattern_random_flicker]
+        
     def switch_pattern(self):
         self.desired_pattern = (self.desired_pattern + 1) % len(self.patterns)
 
-    def run_current_pattern(self, speed, start_pos):
-        return self.patterns[self.current_pattern](speed, start_pos)
+    def run_current_pattern(self, start_pos):
+        return self.patterns[self.current_pattern](start_pos)
 
     def check_joystick_for_color(self):
         global COLOR
@@ -105,17 +106,17 @@ class NeoPixelPatterns:
         self.last_position = encoder_position
         return INITIAL_SPEED
     
-    def pattern_normal(self, speed, start_pos=0):
-        global COLOR
+    def pattern_normal(self, start_pos=0):
+        global COLOR, INITIAL_SPEED
         for row_index, row in enumerate(self.lights):
             if row_index < start_pos:
                 continue
+            INITIAL_SPEED = self.adjust_speed()
             for i in row:
-                speed = self.adjust_speed()
                 self.check_joystick_for_color()
                 pixels[i] = COLOR
             pixels.show()
-            time.sleep(speed)
+            time.sleep(INITIAL_SPEED)
             if self.joystick.button == 0:
                 for i in row:
                     pixels[i] = 0
@@ -128,21 +129,21 @@ class NeoPixelPatterns:
             time.sleep(0.01)
         return -1
 
-    def pattern_reverse(self, speed, start_pos=0):
-        global COLOR
+    def pattern_reverse(self, start_pos=0):
+        global COLOR, INITIAL_SPEED
         num_rows = len(self.lights)
         for row_index in range(num_rows - 1, -1, -1):
             if num_rows - 1 - row_index < start_pos:
                 continue
             row = self.lights[row_index]
+            INITIAL_SPEED = self.adjust_speed()
             for i in reversed(row):
-                speed = self.adjust_speed()
                 self.check_joystick_for_color()
                 pixels[i] = COLOR
             pixels.show()
-            time.sleep(speed)
+            time.sleep(INITIAL_SPEED)
             if self.joystick.button == 0:
-                for i in reversed(row):  # Turn off all LEDs in the current row
+                for i in reversed(row):
                     pixels[i] = 0
                 pixels.show()
                 self.current_pattern = self.desired_pattern
@@ -151,6 +152,27 @@ class NeoPixelPatterns:
                 pixels[i] = 0
             pixels.show()
             time.sleep(0.01)
+        return -1
+
+
+    def pattern_random_flicker(self, speed, start_pos=0):
+        global COLOR
+        num_pixels = len(self.lights) * len(self.lights[0])
+        for _ in range(num_pixels):
+            row = random.choice(self.lights)
+            pixel = random.choice(row)
+            original_color = pixels[pixel]
+            pixels[pixel] = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))  # Set to a random color
+            pixels.show()
+            time.sleep(speed)
+            if self.joystick.button == 0:
+                pixels[pixel] = original_color
+                pixels.show()
+                self.current_pattern = self.desired_pattern
+                return 0
+            speed = self.adjust_speed()
+            pixels[pixel] = original_color
+        pixels.show()
         return -1
 
 def joystick_to_color(angle):
@@ -170,19 +192,14 @@ def get_speed_adjustment(encoder_position, last_position):
 def runLuminArt():
     global COLOR
     last_button_state = 1
-
     patterns = NeoPixelPatterns(lights, myJoystick)
-    speed = INITIAL_SPEED
     start_pos = 0
-
     while True:
         current_button_state = myJoystick.button
         if current_button_state == 0 and last_button_state == 1:
             patterns.switch_pattern()
             time.sleep(0.01)
-
-        stop_pos = patterns.run_current_pattern(speed, start_pos)
-
+        stop_pos = patterns.run_current_pattern(start_pos)
         if stop_pos != -1:
             if patterns.current_pattern == 0:
                 start_pos = len(lights) - 1 - stop_pos
@@ -191,7 +208,6 @@ def runLuminArt():
             patterns.current_pattern = patterns.desired_pattern
         else:
             start_pos = 0
-
         last_button_state = current_button_state
 
 if __name__ == '__main__':
