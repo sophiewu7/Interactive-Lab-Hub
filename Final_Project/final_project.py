@@ -74,6 +74,7 @@ class NeoPixelPatterns:
         self.joystick = joystick
         self.current_pattern = 0
         self.desired_pattern = 0
+        self.last_position = None
         self.patterns = [self.pattern_normal, self.pattern_reverse]
 
     def switch_pattern(self):
@@ -96,22 +97,34 @@ class NeoPixelPatterns:
             new_color = joystick_to_color(angle)
             if new_color != COLOR:
                 COLOR = new_color
-            
+                
+    def adjust_speed(self):
+        global INITIAL_SPEED
+        encoder_position = -encoder.position
+        INITIAL_SPEED = get_speed_adjustment(encoder_position, self.last_position)
+        self.last_position = encoder_position
+        return INITIAL_SPEED
+    
     def pattern_normal(self, speed, start_pos=0):
         global COLOR
         for row_index, row in enumerate(self.lights):
             if row_index < start_pos:
                 continue
             for i in row:
+                speed = self.adjust_speed()
                 self.check_joystick_for_color()
                 pixels[i] = COLOR
             pixels.show()
             time.sleep(speed)
+            if self.joystick.button == 0:
+                for i in row:
+                    pixels[i] = 0
+                pixels.show()
+                self.current_pattern = self.desired_pattern
+                return row_index
             for i in row:
                 pixels[i] = 0
             pixels.show()
-            if self.current_pattern != self.desired_pattern:
-                return row_index
             time.sleep(0.01)
         return -1
 
@@ -123,18 +136,22 @@ class NeoPixelPatterns:
                 continue
             row = self.lights[row_index]
             for i in reversed(row):
+                speed = self.adjust_speed()
                 self.check_joystick_for_color()
                 pixels[i] = COLOR
             pixels.show()
             time.sleep(speed)
+            if self.joystick.button == 0:
+                for i in reversed(row):  # Turn off all LEDs in the current row
+                    pixels[i] = 0
+                pixels.show()
+                self.current_pattern = self.desired_pattern
+                return num_rows - 1 - row_index
             for i in reversed(row):
                 pixels[i] = 0
             pixels.show()
-            if self.current_pattern != self.desired_pattern:
-                return num_rows - 1 - row_index
             time.sleep(0.01)
         return -1
-
 
 def joystick_to_color(angle):
     for color, start_angle, end_angle in color_ranges:
@@ -150,42 +167,32 @@ def get_speed_adjustment(encoder_position, last_position):
     new_speed = max(SPEED_MIN, min(new_speed, SPEED_MAX))
     return new_speed
 
-patterns = NeoPixelPatterns(lights, myJoystick)
-
 def runLuminArt():
     global COLOR
     last_button_state = 1
 
     patterns = NeoPixelPatterns(lights, myJoystick)
     speed = INITIAL_SPEED
-    last_position = None
     start_pos = 0
 
     while True:
-        try:
-            encoder_position = -encoder.position
-        except OSError as e:
-            print(f"Error reading from rotary encoder: {e}")
-            continue
-
-        speed = get_speed_adjustment(encoder_position, last_position)
-        last_position = encoder_position
-         
         current_button_state = myJoystick.button
         if current_button_state == 0 and last_button_state == 1:
             patterns.switch_pattern()
-            time.sleep(0.01) 
+            time.sleep(0.01)
 
         stop_pos = patterns.run_current_pattern(speed, start_pos)
 
         if stop_pos != -1:
-            start_pos = stop_pos
+            if patterns.current_pattern == 0:
+                start_pos = len(lights) - 1 - stop_pos
+            else:
+                start_pos = stop_pos
             patterns.current_pattern = patterns.desired_pattern
         else:
             start_pos = 0
 
         last_button_state = current_button_state
-
 
 if __name__ == '__main__':
     try:
