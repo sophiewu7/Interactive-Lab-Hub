@@ -109,6 +109,8 @@ class NeoPixelPatterns:
             encoder_position = -encoder.position
             SPEED = get_speed_adjustment(encoder_position, self.last_position)
             self.last_position = encoder_position
+        else:
+            pass
         return SPEED
     
     def pattern_normal(self, start_pos=0):
