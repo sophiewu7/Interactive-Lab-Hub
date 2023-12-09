@@ -14,22 +14,6 @@ SPEED_DELTA_MULTIPLIER = 0.02
 SPEED_MIN, SPEED_MAX = 0.01, 1
 COLOR = (250, 188, 2)
 
-# Initialize I2C
-try:
-    i2c = busio.I2C(board.SCL, board.SDA)
-except ValueError as e:
-    print(f"I2C Initialization Error: {e}")
-    sys.exit(1)
-
-# Initialize NeoPixel
-try:
-    ss = seesaw.Seesaw(i2c, addr=0x60)
-    neo_pin, num_pixels = 15, 64
-    pixels = neopixel.NeoPixel(ss, neo_pin, num_pixels, brightness=1)
-except OSError as e:
-    print(f"NeoPixel Initialization Error: {e}")
-    sys.exit(1)
-
 # Define color-angle mappings and lights array
 color_ranges = [
     ((250, 188, 2), 0, 30),
@@ -53,6 +37,22 @@ lights = [[42, 43, 44, 45],
           [14, 15, 16, 17],
           [8, 9, 10, 11]]
 
+# Initialize I2C
+try:
+    i2c = busio.I2C(board.SCL, board.SDA)
+except ValueError as e:
+    print(f"I2C Initialization Error: {e}")
+    sys.exit(1)
+
+# Initialize NeoPixel
+try:
+    ss = seesaw.Seesaw(i2c, addr=0x60)
+    neo_pin, num_pixels = 15, 64
+    pixels = neopixel.NeoPixel(ss, neo_pin, num_pixels, brightness=1)
+except OSError as e:
+    print(f"NeoPixel Initialization Error: {e}")
+    sys.exit(1)
+
 # Initialize Joystick
 try:
     myJoystick = qwiic_joystick.QwiicJoystick()
@@ -68,16 +68,43 @@ except OSError as e:
     print(f"Rotary Encoder Initialization Error: {e}")
     sys.exit(1)
 
+button_pin = 24
+roter.pin_mode(button_pin, roter.INPUT_PULLUP)
+
 def joystick_to_color(angle):
     for color, start_angle, end_angle in color_ranges:
         if start_angle <= angle < end_angle:
             return color
     return (255, 255, 255)
 
-def set_neopixel_color(speed):
+def set_neopixel_color_normal(speed):
     global COLOR
     for row in lights:
         for i in row:
+            try:
+                x_position, y_position = myJoystick.horizontal, myJoystick.vertical
+            except OSError as e:
+                print(f"Error reading from joystick: {e}")
+                continue
+            x_normalized = (x_position - RESTING_POSITION_X) / 512.0
+            y_normalized = (y_position - RESTING_POSITION_Y) / 512.0
+            if abs(x_normalized) > PULL_THRESHOLD / 512.0 or abs(y_normalized) > PULL_THRESHOLD / 512.0:
+                angle = (math.degrees(math.atan2(y_normalized, x_normalized)) + 360) % 360
+                new_color = joystick_to_color(angle)
+                if new_color != COLOR:
+                    COLOR = new_color
+            pixels[i] = COLOR
+        pixels.show()
+        time.sleep(speed)
+        for i in row:
+            pixels[i] = 0
+        pixels.show()
+        time.sleep(0.01)
+
+def set_neopixel_color_reverse(speed):
+    global COLOR
+    for row in reversed(lights):
+        for i in reversed(row):
             try:
                 x_position, y_position = myJoystick.horizontal, myJoystick.vertical
             except OSError as e:
@@ -107,7 +134,9 @@ def get_speed_adjustment(encoder_position, last_position):
     return new_speed
 
 def runLuminArt():
-    global COLOR 
+    global COLOR
+    current_pattern = 0
+    last_button_state = 1
     
     if not myJoystick.connected:
         print("The Qwiic Joystick device isn't connected to the system. Please check your connection", file=sys.stderr)
@@ -126,13 +155,24 @@ def runLuminArt():
             print(f"Error reading from rotary encoder: {e}")
             continue
 
+        current_button_state = myJoystick.button
+        if current_button_state != last_button_state:
+            current_pattern = 1 - current_pattern
+            time.sleep(0.01)
+        last_button_state = current_button_state
+
         speed = get_speed_adjustment(encoder_position, last_position)
         last_position = encoder_position
-        set_neopixel_color(speed)
+        print(myJoystick.button)
+        if current_pattern == 0:
+            set_neopixel_color_normal(speed)
+        else:
+            set_neopixel_color_reverse(speed)
 
+            
 if __name__ == '__main__':
     try:
         runLuminArt()
     except (KeyboardInterrupt, SystemExit):
-        print("\nEnding Example 1")
+        print("\nEnding LuminArt")
         sys.exit(0)
