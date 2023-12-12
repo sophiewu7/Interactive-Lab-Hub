@@ -22,7 +22,7 @@ The installation showcases the possibilities of merging traditional artistic med
 
 - [Raspberry Pi 4](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) (including SD card, power supply)
 - Acrylic Sheet (18" x 24", 3mm thick)
-- Wooden Board (18" x 24", 6mm thick)
+- Wooden Board (18" x 24", 3mm thick)
 - [SparkFun Qwiic Joystick](https://www.sparkfun.com/products/15168)
 - [Adafruit I2C Stemma QT Rotary Encoder](https://www.adafruit.com/product/4991#technical-details)
 - [Adafruit NeoPixel Digital RGB LED Strip](https://www.adafruit.com/product/1138)
@@ -37,6 +37,7 @@ Start with 1 layer where we would try out the visibility of LED light on the des
 In case of technical difficulties or budget constraints, simplify the design while maintaining the core interactive concept.
     
 ## Functioning Project:
+![4681702164780_.pic](https://hackmd.io/_uploads/BJ1w-ofIa.jpg)
 
 ![cd8ee8c7e9d88f7f1fa467944c55792](https://hackmd.io/_uploads/ByXVXDGUa.jpg)
 
@@ -49,11 +50,11 @@ The user can interact with the device by the following ways:
 2. Press the joystic (acts as a button) to swicth between light patterns
 3. Turn the rotary encoder to change the speed of light movement
 
-Detail interaction can be viewed through the [video](https://youtu.be/3wqJpvPEugU) in the Video section.
+Detailed interactions can be viewed through the [video](https://youtu.be/3wqJpvPEugU) in the Video section.
 
 ## Design Process
 
-### Phase 1 - Prototyping
+### Prototyping
 
 We started our project by doing laser cut training at the Maker Lab for week 1.
 
@@ -68,6 +69,10 @@ We first cut out 6 acrylic layers with a geometry design we found on the interne
 By using the flashlight of our phone, we confirmed the feasibility of our project and decided to move forward with the original idea.
 
 Our next step was figuring out how to use the LED light strip. We sought help from Hauk and got the light strip to work in week 2.
+
+### Box Design
+
+![image](https://hackmd.io/_uploads/ByKGKwM8a.png)
 
 We also use wooden board to create a holder for the 2 inches * 2 inches prototype in week 2.
 
@@ -89,7 +94,7 @@ Then we designed a box using boxes.py template with Adobe Illustrator. Because t
 
 With all the parts maded, we decided to use 4 LED pixel per row. We counted the index of these LEDs and started our coding process.
 
-### Codes
+### Code
 
 See `final_project.py` for details.
 Step 1: Have control over LED lights
